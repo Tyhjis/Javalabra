@@ -1,0 +1,8 @@
+Ohjelmoinnin harjoitustyö 2012
+Kristian Hansson
+
+Tuntikirjanpito:
+
+17.12.2012
+Käytetty aika: 4 tuntia.
+Github-versionhallinnan opettelu. Aihemäärittely.
