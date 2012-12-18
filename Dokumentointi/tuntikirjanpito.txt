@@ -5,4 +5,8 @@ Tuntikirjanpito:
 
 17.12.2012
 K‰ytetty aika: 4 tuntia.
-Github-versionhallinnan opettelu. Aihem‰‰rittely.
+Github-versionhallinnan opettelu. Aihem‰‰rittely. M‰‰rittelyvaiheen luokkakaavion luonti. Olioiden luonti.
+
+18.12.2012
+K‰ytetty aika: 3 tuntia.
+Ensimm‰iset koodirivit tehty. Ensimm‰iset testit tehty.
