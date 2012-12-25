@@ -8,11 +8,15 @@ public class Laiva {
     
     private int pituus;
     
-    public void setPituus(int pituus){
+    public Laiva(int pituus){
         this.pituus = pituus;
     }
     
     public int getPituus(){
         return pituus;
+    }
+    
+    public void ammuLaivaan(){
+        pituus--;
     }
 }

@@ -10,10 +10,11 @@ package Mallit;
  */
 public class Ruutu {
     
-    private int posx;
-    private int posy;
+    private int posx; //Ruudun
+    private int posy; //paikka ruudukossa.
     private boolean ammuttu;
     private boolean onkolaiva;
+    private Laiva laiva; //Sisaltaa viitteen laivaan.
     
     public Ruutu(int posx, int posy){
         this.posx = posx;
@@ -34,12 +35,15 @@ public class Ruutu {
         return onkolaiva;
     }
     
-    public void ammuRuutuun(){
+    public void ammu(){
         this.ammuttu = true;
+        if(onkoTuhottu())
+            laiva.ammuLaivaan();
     }
     
-    public void asetaLaiva(){
+    public void asetaLaiva(Laiva laiva){
         this.onkolaiva = true;
+        this.laiva = laiva;
     }
     
     public boolean onkoTuhottu(){

@@ -2,17 +2,12 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Mallit;
+package sovelluslogiikka;
 
 /**
  *
  * @author Krisu
  */
-public class Pelaaja {
+public class Vuoro {
     
-    String nimi;
-    
-    public Pelaaja(String nimi){
-        this.nimi = nimi;
-    }
 }
