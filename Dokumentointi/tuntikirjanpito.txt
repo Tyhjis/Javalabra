@@ -10,3 +10,12 @@ Github-versionhallinnan opettelu. Aihemäärittely. Määrittelyvaiheen luokkakaavio
 18.12.2012
 Käytetty aika: 3 tuntia.
 Ensimmäiset koodirivit tehty. Ensimmäiset testit tehty.
+
+19.12.2012
+Käytetty aika: 3 tuntia.
+Koodausta ja suunnittelua.
+
+20.12.2012
+Käytetty aika: 2 tuntia.
+Käyttöliittymän suunnittelua.
+

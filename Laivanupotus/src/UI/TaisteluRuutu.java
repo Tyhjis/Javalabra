@@ -1,13 +1,29 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package UI;
 
-/**
- *
- * @author Krisu
- */
-public class TaisteluRuutu {
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import sovelluslogiikka.Logiikka;
+
+public class TaisteluRuutu extends JFrame {
     
+    private JPanel ruudukko1, ruudukko2;
+    private JPanel info;
+    private JLabel[][] ruudut;
+    private Logiikka ohjain;
+    
+    public TaisteluRuutu(){
+        muodostaKayttoliittyma();
+    }
+    
+    public void asetaOhjain(Logiikka ohjain){
+        this.ohjain = ohjain;
+    }
+    
+    public void muodostaKayttoliittyma(){
+        setTitle("Laivanupotus");
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        
+    }
 }
