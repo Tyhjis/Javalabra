@@ -15,4 +15,8 @@ public class Pelaaja {
     public Pelaaja(String nimi){
         this.nimi = nimi;
     }
+    
+    public String getNimi(){
+        return nimi;
+    }
 }

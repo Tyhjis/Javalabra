@@ -7,9 +7,11 @@ package Mallit;
 public class Laiva {
     
     private int pituus;
+    private Ruudukko ruudukko;
     
-    public Laiva(int pituus){
+    public Laiva(int pituus, Ruudukko ruudukko){
         this.pituus = pituus;
+        this.ruudukko = ruudukko;
     }
     
     public int getPituus(){
@@ -18,5 +20,8 @@ public class Laiva {
     
     public void ammuLaivaan(){
         pituus--;
+        if(pituus == 0){
+            ruudukko.poistaLaiva();
+        }
     }
 }

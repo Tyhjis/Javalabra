@@ -10,9 +10,8 @@ package Mallit;
  */
 public class Ruudukko {
     
-    Ruutu[][] ruudukko;
-    Laiva[] laivat;
-    int laivojenmaara;
+    private Ruutu[][] ruudukko;
+    private int laivojenmaara;
     
     public Ruudukko(int koko){
         ruudukko = new Ruutu[koko][koko];
@@ -29,6 +28,10 @@ public class Ruudukko {
     
     public void ammuRuutuun(int posx, int posy){
         ruudukko[posy][posx].ammu();
+    }
+    
+    public void poistaLaiva(){
+        laivojenmaara--;
     }
     
     public int getKoko(){

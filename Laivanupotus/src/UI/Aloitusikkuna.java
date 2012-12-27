@@ -1,12 +1,15 @@
 
 package UI;
 
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.*;
 import sovelluslogiikka.Logiikka;
 
-public class Aloitusikkuna extends JFrame{
+public class Aloitusikkuna extends JFrame implements IkkunaIF{
     
-    private JButton uusipeli, parhaat, lataus;
+    private JButton kaksinpeli, yksinpeli, parhaat, lataus;
     private JPanel sisalto;
     private JMenuBar toiminnot;
     private JMenu tiedosto;
@@ -24,18 +27,33 @@ public class Aloitusikkuna extends JFrame{
         setTitle("Laivanupotus");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         sisalto = new JPanel();
-        uusipeli = new JButton("Uusi peli");
+        kaksinpeli = new JButton("Kaksinpeli");
+        yksinpeli = new JButton("Yksinpeli");
         parhaat = new JButton("Parhaat pelaajat");
         lataus = new JButton("Lataa peli");
         toiminnot = new JMenuBar();
         tiedosto = new JMenu("Tiedosto");
-        sisalto.add(uusipeli);
+        sisalto.setLayout(new BoxLayout(sisalto, BoxLayout.PAGE_AXIS));
+        sisalto.add(yksinpeli);
+        sisalto.add(kaksinpeli);
         sisalto.add(parhaat);
         sisalto.add(lataus);
         toiminnot.add(tiedosto);
         setJMenuBar(toiminnot);        
         setContentPane(sisalto);
-        setSize(400, 500);
+        setSize(200, 200);
         setVisible(true);
     }
+    
+    class Kaksinpelinappi implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            setVisible(false);
+            ohjain.aloitaKaksinpeli();            
+        }
+        
+    }
 }
+
+

@@ -25,7 +25,7 @@ public class RuutuTest {
     
     @Test
     public void testaaOnkoTuhottuMetodi(){
-        Laiva laiva = new Laiva(2);
+        Laiva laiva = new Laiva(2, new Ruudukko(10));
         ruutu.asetaLaiva(laiva);
         assertTrue(!ruutu.onkoTuhottu());
         ruutu.ammu();

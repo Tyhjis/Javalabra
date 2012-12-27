@@ -1,7 +1,6 @@
 
 package UI;
 
-import Mallit.Ruudukko;
 import java.awt.Color;
 import java.awt.GridLayout;
 import javax.swing.JLabel;
@@ -15,7 +14,6 @@ public class Varvaysikkuna {
     private JPanel ruutujenpohja;
     private JLabel[][] ruudut;
     private final int ruudukonkoko;
-    private Ruudukko ruudukko;
     private Color rajavari;
     
     public Varvaysikkuna(int koko){
@@ -42,7 +40,6 @@ public class Varvaysikkuna {
                 ruudut[i][j] = new JLabel();
                 ruudut[i][j].setBorder(new LineBorder(rajavari));
                 ruudut[i][j].setOpaque(true);
-                
                 ruutujenpohja.add(ruudut[i][j]);
             }
         }

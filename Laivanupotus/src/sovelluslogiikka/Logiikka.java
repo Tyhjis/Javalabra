@@ -15,10 +15,13 @@ import UI.*;
 public class Logiikka {
     
     
-    private Aloitusikkuna aloitus;
+    private IkkunaIF nakyma;
+    private Pelaaja pelaaja1, pelaaja2;
+    private Ruudukko ruudukko1, ruudukko2;
+    private static Logiikka ohjain;
     
-    public Logiikka(Aloitusikkuna aloitus){
-        this.aloitus = aloitus;
+    public Logiikka(IkkunaIF nakyma){
+        this.nakyma = nakyma;
     }
     
     public void luoPeli(){
@@ -27,9 +30,16 @@ public class Logiikka {
     
     public static void main(String[] args){
         Aloitusikkuna rek = new Aloitusikkuna();
-        Logiikka ohjain = new Logiikka(rek);
-        
+        ohjain = new Logiikka(rek);
+        rek.asetaOhjain(ohjain);
     }
     
+    public void aloitaYksinpeli(){
+        Kyselyikkuna kokojenkysely = new Kyselyikkuna();        
+    }
+    
+    public void aloitaKaksinpeli(){
+        
+    }   
     
 }

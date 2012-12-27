@@ -42,8 +42,13 @@ public class RuudukkoTest {
     
     @Test
     public void tarkistaLaivanAsetus(){
-        Laiva laiva = new Laiva(3);
+        Laiva laiva = new Laiva(3, ruudukko);
         assertTrue(ruudukko.lisaaLaiva(laiva, 3, 2, true));
         assertTrue(!ruudukko.lisaaLaiva(laiva, 3, 2, false));
+    }
+    
+    @Test
+    public void testaaTuhoutuukoLaiva(){
+        
     }
 }
