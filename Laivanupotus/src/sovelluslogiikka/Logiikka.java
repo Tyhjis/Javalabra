@@ -15,9 +15,9 @@ import UI.*;
 public class Logiikka {
     
     
-    private Aloitusruutu aloitus;
+    private Aloitusikkuna aloitus;
     
-    public Logiikka(Aloitusruutu aloitus){
+    public Logiikka(Aloitusikkuna aloitus){
         this.aloitus = aloitus;
     }
     
@@ -26,7 +26,7 @@ public class Logiikka {
     }
     
     public static void main(String[] args){
-        Aloitusruutu rek = new Aloitusruutu();
+        Aloitusikkuna rek = new Aloitusikkuna();
         Logiikka ohjain = new Logiikka(rek);
         
     }

@@ -4,7 +4,7 @@ package UI;
 import javax.swing.*;
 import sovelluslogiikka.Logiikka;
 
-public class Aloitusruutu extends JFrame{
+public class Aloitusikkuna extends JFrame{
     
     private JButton uusipeli, parhaat, lataus;
     private JPanel sisalto;
@@ -12,7 +12,7 @@ public class Aloitusruutu extends JFrame{
     private JMenu tiedosto;
     private Logiikka ohjain;
     
-    public Aloitusruutu(){
+    public Aloitusikkuna(){
         muodostaKayttoliittyma();
     }
     

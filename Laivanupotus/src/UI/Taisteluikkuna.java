@@ -6,14 +6,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import sovelluslogiikka.Logiikka;
 
-public class TaisteluRuutu extends JFrame {
+public class Taisteluikkuna extends JFrame {
     
     private JPanel ruudukko1, ruudukko2;
     private JPanel info;
     private JLabel[][] ruudut;
     private Logiikka ohjain;
     
-    public TaisteluRuutu(){
+    public Taisteluikkuna(){
         muodostaKayttoliittyma();
     }
     
