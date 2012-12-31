@@ -22,7 +22,7 @@ public class Kaksinpeli implements PeliIF {
     private Taisteluikkuna taistelu;
     private ArrayList<Integer> laivojenkoot;
     
-    public Kaksinpeli(String nimi1, String nimi2, int koko){
+    public Kaksinpeli(String nimi1, String nimi2, int koko, int[] laivojenkoot){
         pelaaja1 = new Pelaaja(nimi1);
         pelaaja2 = new Pelaaja(nimi2);
         ruudukko1 = new Ruudukko(koko);

@@ -18,7 +18,7 @@ public class Yksinpeli implements PeliIF {
     private AI tekoaly;
     private Ruudukko ruudukko1, ruudukko2;
     
-    public Yksinpeli(String nimi, int koko){
+    public Yksinpeli(String nimi, int koko, int[] laivojenkoko){
         pelaaja = new Pelaaja(nimi);
         tekoaly = new AI();
         ruudukko1 = new Ruudukko(koko);

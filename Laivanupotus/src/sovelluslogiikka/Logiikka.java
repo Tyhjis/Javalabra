@@ -13,6 +13,8 @@ public class Logiikka {
     
     private IkkunaIF nakyma;
     private static Logiikka ohjain;
+    private Yksinpeli yksinpeli;
+    private Kaksinpeli kaksinpeli;
     
     public Logiikka(IkkunaIF nakyma){
         this.nakyma = nakyma;
@@ -34,15 +36,23 @@ public class Logiikka {
         rek.asetaOhjain(ohjain);
     }
     
-    public void aloitaPeli(){
+    public void alustaPeli(){
         luoKyselyikkuna();
     }
     
-    public void aloitaKaksinpeli(){
+    public void aloitaPeli(boolean yksinpeli){
         
     }
     
-    public void aloitaYksinpeli(){
+    public void aloitaKaksinpeli(String nimi1, String nimi2, int ruudukonkoko, int[] laivojenkoot){
+        kaksinpeli = new Kaksinpeli(nimi1, nimi2, ruudukonkoko, laivojenkoot);
+    }
+    
+    public void aloitaYksinpeli(String nimi1, int ruudukonkoko, int[] laivojenkoot){
+        yksinpeli = new Yksinpeli(nimi1, ruudukonkoko, laivojenkoot);
+    }
+    
+    public void kyseleKootJaMaarat(boolean yksinpeli, String nimi1, String nimi2){
         
     }
     

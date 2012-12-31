@@ -51,7 +51,7 @@ public class Aloitusikkuna extends JFrame implements IkkunaIF{
         @Override
         public void actionPerformed(ActionEvent e) {
             setVisible(false);
-            ohjain.aloitaPeli();            
+            ohjain.alustaPeli();            
         }
     }
 }
