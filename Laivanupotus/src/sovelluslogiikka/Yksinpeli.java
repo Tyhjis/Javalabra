@@ -12,7 +12,7 @@ import Mallit.Ruudukko;
  *
  * @author Krisu
  */
-public class Yksinpeli {
+public class Yksinpeli implements PeliIF {
     
     private Pelaaja pelaaja;
     private AI tekoaly;
@@ -23,5 +23,19 @@ public class Yksinpeli {
         tekoaly = new AI();
         ruudukko1 = new Ruudukko(koko);
         ruudukko2 = new Ruudukko(koko);
+    }
+
+    @Override
+    public void varvaaLaivat() {
+       
+    }
+
+    @Override
+    public void aloitaPeli() {
+    }
+
+    @Override
+    public void pelaaVuoro() {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

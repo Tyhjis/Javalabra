@@ -9,7 +9,7 @@ import sovelluslogiikka.Logiikka;
 
 public class Aloitusikkuna extends JFrame implements IkkunaIF{
     
-    private JButton kaksinpeli, yksinpeli, parhaat, lataus;
+    private JButton aloitapeli, parhaat, lataus;
     private JPanel sisalto;
     private JMenuBar toiminnot;
     private JMenu tiedosto;
@@ -19,23 +19,24 @@ public class Aloitusikkuna extends JFrame implements IkkunaIF{
         muodostaKayttoliittyma();
     }
     
+    @Override
     public void asetaOhjain(Logiikka ohjain){
         this.ohjain = ohjain;
     }
     
+    @Override
     public void muodostaKayttoliittyma(){
         setTitle("Laivanupotus");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         sisalto = new JPanel();
-        kaksinpeli = new JButton("Kaksinpeli");
-        yksinpeli = new JButton("Yksinpeli");
+        aloitapeli = new JButton("Aloita Peli");
+        aloitapeli.addActionListener(new PelinAloitusNappi());
         parhaat = new JButton("Parhaat pelaajat");
         lataus = new JButton("Lataa peli");
         toiminnot = new JMenuBar();
         tiedosto = new JMenu("Tiedosto");
         sisalto.setLayout(new BoxLayout(sisalto, BoxLayout.PAGE_AXIS));
-        sisalto.add(yksinpeli);
-        sisalto.add(kaksinpeli);
+        sisalto.add(aloitapeli);
         sisalto.add(parhaat);
         sisalto.add(lataus);
         toiminnot.add(tiedosto);
@@ -45,14 +46,13 @@ public class Aloitusikkuna extends JFrame implements IkkunaIF{
         setVisible(true);
     }
     
-    class Kaksinpelinappi implements ActionListener{
+    class PelinAloitusNappi implements ActionListener{
 
         @Override
         public void actionPerformed(ActionEvent e) {
             setVisible(false);
-            ohjain.aloitaKaksinpeli();            
+            ohjain.aloitaPeli();            
         }
-        
     }
 }
 

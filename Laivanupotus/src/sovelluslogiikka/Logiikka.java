@@ -3,10 +3,6 @@
  * and open the template in the editor.
  */
 package sovelluslogiikka;
-import Mallit.Laiva;
-import Mallit.Ruudukko;
-import Mallit.Pelaaja;
-import java.util.ArrayList;
 import UI.*;
 /**
  *
@@ -16,12 +12,16 @@ public class Logiikka {
     
     
     private IkkunaIF nakyma;
-    private Pelaaja pelaaja1, pelaaja2;
-    private Ruudukko ruudukko1, ruudukko2;
     private static Logiikka ohjain;
     
     public Logiikka(IkkunaIF nakyma){
         this.nakyma = nakyma;
+    }
+
+    public void luoKyselyikkuna() {
+        Kyselyikkuna kokojenkysely = new Kyselyikkuna();
+        ohjain = new Logiikka(kokojenkysely);
+        kokojenkysely.asetaOhjain(ohjain);
     }
     
     public void luoPeli(){
@@ -34,12 +34,16 @@ public class Logiikka {
         rek.asetaOhjain(ohjain);
     }
     
-    public void aloitaYksinpeli(){
-        Kyselyikkuna kokojenkysely = new Kyselyikkuna();        
+    public void aloitaPeli(){
+        luoKyselyikkuna();
     }
     
     public void aloitaKaksinpeli(){
         
-    }   
+    }
+    
+    public void aloitaYksinpeli(){
+        
+    }
     
 }
