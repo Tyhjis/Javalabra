@@ -49,4 +49,13 @@ public class Ruutu {
     public boolean onkoTuhottu(){
         return onkolaiva && ammuttu;
     }
+    
+    public String toString(){
+        if(sisaltaakoLaivan()){
+            return "1";
+        }
+        else{
+            return "0";
+        }
+    }
 }

@@ -11,6 +11,7 @@ package Mallit;
 public class Pelaaja {
     
     String nimi;
+    Ruudukko r;
     
     public Pelaaja(String nimi){
         this.nimi = nimi;
@@ -18,5 +19,9 @@ public class Pelaaja {
     
     public String getNimi(){
         return nimi;
+    }
+    
+    public void asetaRuudukko(Ruudukko r){
+        this.r = r;
     }
 }

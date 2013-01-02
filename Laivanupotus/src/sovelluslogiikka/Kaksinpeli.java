@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package sovelluslogiikka;
 
 import Mallit.Pelaaja;
@@ -10,11 +7,7 @@ import UI.Taisteluikkuna;
 import UI.Varvaysikkuna;
 import java.util.ArrayList;
 
-/**
- *
- * @author Krisu
- */
-public class Kaksinpeli implements PeliIF {
+public class Kaksinpeli{
     
     private Pelaaja pelaaja1, pelaaja2;
     private Ruudukko ruudukko1, ruudukko2;
@@ -22,30 +15,19 @@ public class Kaksinpeli implements PeliIF {
     private Taisteluikkuna taistelu;
     private ArrayList<Integer> laivojenkoot;
     
-    public Kaksinpeli(String nimi1, String nimi2, int koko, int[] laivojenkoot){
-        pelaaja1 = new Pelaaja(nimi1);
-        pelaaja2 = new Pelaaja(nimi2);
+    public Kaksinpeli(String nimi1, String nimi2, int koko, int[] koot){
         ruudukko1 = new Ruudukko(koko);
         ruudukko2 = new Ruudukko(koko);
+        pelaaja1 = new Pelaaja(nimi1);
+        pelaaja2 = new Pelaaja(nimi2);
+        pelaaja1.asetaRuudukko(ruudukko1);
+        pelaaja2.asetaRuudukko(ruudukko2);
     }
     
-    public void varvaaLaivat(Ruudukko r) {
-        
-    }
-
-    @Override
-    public void aloitaPeli() {
-        
-    }
-
-    @Override
-    public void pelaaVuoro() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public void varvaaLaivat() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void luoVarvattavatLaivat(int[] koot){
+        for(int i = 0; i < koot.length; i++){
+            
+        }
     }
     
     

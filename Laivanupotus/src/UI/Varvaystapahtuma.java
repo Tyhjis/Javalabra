@@ -3,25 +3,23 @@ package UI;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import sovelluslogiikka.Logiikka;
-import sovelluslogiikka.PeliIF;
-
+import sovelluslogiikka.Yksinpeli;
 
 public class Varvaystapahtuma implements MouseListener {
 
     private final int posx;
     private final int posy;
-    private Varvaysikkuna varvays;
+    private Varvaysikkuna nakyma;
     
-    public Varvaystapahtuma(int posx, int posy, Varvaysikkuna varvays){
-        this.varvays = varvays;
+    public Varvaystapahtuma(int posx, int posy, Varvaysikkuna nakyma){
         this.posx = posx;
         this.posy = posy;
+        this.nakyma = nakyma;
     }
     
     @Override
     public void mouseClicked(MouseEvent e) {
-        
+        nakyma.sijoitaLaiva(posx, posy);
     }
 
     @Override

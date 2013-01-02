@@ -26,10 +26,6 @@ public class Logiikka {
         kokojenkysely.asetaOhjain(ohjain);
     }
     
-    public void luoPeli(){
-        
-    }
-    
     public static void main(String[] args){
         Aloitusikkuna rek = new Aloitusikkuna();
         ohjain = new Logiikka(rek);
@@ -40,20 +36,9 @@ public class Logiikka {
         luoKyselyikkuna();
     }
     
-    public void aloitaPeli(boolean yksinpeli){
-        
-    }
-    
-    public void aloitaKaksinpeli(String nimi1, String nimi2, int ruudukonkoko, int[] laivojenkoot){
-        kaksinpeli = new Kaksinpeli(nimi1, nimi2, ruudukonkoko, laivojenkoot);
-    }
-    
     public void aloitaYksinpeli(String nimi1, int ruudukonkoko, int[] laivojenkoot){
         yksinpeli = new Yksinpeli(nimi1, ruudukonkoko, laivojenkoot);
-    }
-    
-    public void kyseleKootJaMaarat(boolean yksinpeli, String nimi1, String nimi2){
-        
+        yksinpeli.luoVarvaysRuutu();
     }
     
 }

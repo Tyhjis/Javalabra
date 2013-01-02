@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Mallit;
 
 public class Laiva {
@@ -9,9 +6,8 @@ public class Laiva {
     private int pituus;
     private Ruudukko ruudukko;
     
-    public Laiva(int pituus, Ruudukko ruudukko){
+    public Laiva(int pituus){
         this.pituus = pituus;
-        this.ruudukko = ruudukko;
     }
     
     public int getPituus(){
@@ -23,5 +19,9 @@ public class Laiva {
         if(pituus == 0){
             ruudukko.poistaLaiva();
         }
+    }
+    
+    public void laivanAsetus(Ruudukko r){
+        this.ruudukko = r;
     }
 }

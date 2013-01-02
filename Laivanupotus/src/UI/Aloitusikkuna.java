@@ -40,7 +40,7 @@ public class Aloitusikkuna extends JFrame implements IkkunaIF{
         sisalto.add(parhaat);
         sisalto.add(lataus);
         toiminnot.add(tiedosto);
-        setJMenuBar(toiminnot);        
+        setJMenuBar(toiminnot);
         setContentPane(sisalto);
         setSize(200, 200);
         setVisible(true);

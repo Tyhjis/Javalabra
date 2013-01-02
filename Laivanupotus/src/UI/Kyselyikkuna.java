@@ -17,8 +17,8 @@ public class Kyselyikkuna extends JFrame implements IkkunaIF {
     private String ruudukonkokostr, laivojenmaarastr;
     private int[] defkoot, kustomkoot;
     private int laivojenmaara, ruudukonkoko;
-    private JTextField pelaaja1nimi, pelaaja2nimi;
-    private String nimi1, nimi2;
+    private JTextField pelaaja1nimi;
+    private String nimi1;
     private final Object[] valinnat;
     private JComboBox[] valitse;
     private JLabel[] indeksit;
@@ -42,29 +42,19 @@ public class Kyselyikkuna extends JFrame implements IkkunaIF {
         sisalto = new JPanel();
         kyselynsisalto = new JPanel();
         moodivalinnat = new ButtonGroup();
-        pelaajavalinnat = new ButtonGroup();
         klassinen = new JRadioButton("Klassinen peli");
         moderni = new JRadioButton("Kehittyneempi versio");
-        yksipelaaja = new JRadioButton("1 pelaaja");
-        kaksipelaajaa = new JRadioButton("2 pelaajaa");
         jatka = new JButton("Jatka");
         pelaaja1nimi = new JTextField("Pelaaja1");
-        pelaaja2nimi = new JTextField("Pelaaja2");
         jatka.addActionListener(new JatkaNapinToiminta());
         moderni.addActionListener(new PelityylinToiminta());
         moodivalinnat.add(klassinen);
         moodivalinnat.add(moderni);
-        pelaajavalinnat.add(yksipelaaja);
-        pelaajavalinnat.add(kaksipelaajaa);
         klassinen.setSelected(true);
-        yksipelaaja.setSelected(true);
         sisalto.add(klassinen);
         sisalto.add(moderni);
-        sisalto.add(yksipelaaja);
-        sisalto.add(kaksipelaajaa);
         sisalto.add(jatka);
         sisalto.add(pelaaja1nimi);
-        sisalto.add(pelaaja2nimi);
         pohja.add(sisalto);
         pohja.add(kyselynsisalto);
         setContentPane(pohja);
@@ -142,20 +132,10 @@ public class Kyselyikkuna extends JFrame implements IkkunaIF {
         public void actionPerformed(ActionEvent e) {
             if(moderni.isSelected()){
                 alustaLaivojenKoot();
-                if(yksipelaaja.isSelected()){
-                    ohjain.aloitaYksinpeli(pelaaja1nimi.getText(), ruudukonkoko, kustomkoot);
-                }
-                else{
-                    ohjain.aloitaKaksinpeli(pelaaja1nimi.getText(), pelaaja2nimi.getText(), ruudukonkoko, kustomkoot);
-                }
+                ohjain.aloitaYksinpeli(pelaaja1nimi.getText(), ruudukonkoko, kustomkoot);
             }
             else{
-                if(yksipelaaja.isSelected()){
-                    ohjain.aloitaYksinpeli(pelaaja1nimi.getText(), ruudukonkoko, defkoot);
-                }
-                else{
-                    ohjain.aloitaKaksinpeli(pelaaja1nimi.getText(), pelaaja2nimi.getText(), ruudukonkoko, defkoot);
-                }
+                ohjain.aloitaYksinpeli(pelaaja1nimi.getText(), 10, defkoot);
             }
         }
     }

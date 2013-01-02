@@ -1,21 +1,18 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Mallit;
 
-/**
- *
- * @author Krisu
- */
+import java.util.ArrayList;
+
 public class Ruudukko {
     
     private Ruutu[][] ruudukko;
     private int laivojenmaara;
+    private ArrayList<Laiva> laivat;
     
     public Ruudukko(int koko){
         ruudukko = new Ruutu[koko][koko];
         alustaRuudukko();
+        laivat = new ArrayList();
     }
     
     private void alustaRuudukko(){        
@@ -32,6 +29,9 @@ public class Ruudukko {
     
     public void poistaLaiva(){
         laivojenmaara--;
+        if(!laivat.isEmpty()){
+            
+        }
     }
     
     public int getKoko(){
@@ -51,14 +51,16 @@ public class Ruudukko {
                 for(int i = posx; i <= posx+pit-1; i++){
                     ruudukko[posy][i].asetaLaiva(laiva);
                 }
-                return true;
             }
             else{
                 for(int i = posy; i <= posy+pit-1; i++){
                     ruudukko[i][posx].asetaLaiva(laiva);
                 }
-                return true;
             }
+            laiva.laivanAsetus(this);
+            laivat.add(laiva);
+            laivojenmaara++;
+            return true;
         }
         return false; //Jos ei onnistunut palautetaan false.
     }
@@ -85,5 +87,14 @@ public class Ruudukko {
             }
         }
         return true; //Jos vapaa paikka löytyy, palautetaan true.        
+    }
+    
+    public void tulosta(){
+        for (int i = 0; i < ruudukko.length; i++) {
+            for (int j = 0; j < ruudukko.length; j++) {
+                System.out.print(ruudukko[i][j].toString());
+            }
+            System.out.println();
+        }
     }
 }
