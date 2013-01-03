@@ -89,12 +89,18 @@ public class Ruudukko {
         return true; //Jos vapaa paikka löytyy, palautetaan true.        
     }
     
-    public void tulosta(){
-        for (int i = 0; i < ruudukko.length; i++) {
-            for (int j = 0; j < ruudukko.length; j++) {
-                System.out.print(ruudukko[i][j].toString());
+    public boolean[][] haeRuudukkoBooleantaulukkona(){
+        /*Palauttaa ruudukon boolean-taulukkona*/
+        if(ruudukko != null){
+           int pit = getKoko();
+            boolean[][] pal = new boolean[pit][pit];
+            for(int i = 0; i < pit; i++){
+                for(int j = 0; j < pit; j++){
+                    pal[i][j] = ruudukko[i][j].sisaltaakoLaivan();
+                }
             }
-            System.out.println();
+            return pal; 
         }
+        return null;       
     }
 }

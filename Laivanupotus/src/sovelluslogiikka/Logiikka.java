@@ -13,7 +13,7 @@ public class Logiikka {
     
     private IkkunaIF nakyma;
     private static Logiikka ohjain;
-    private Yksinpeli yksinpeli;
+    private Peli yksinpeli;
     private Kaksinpeli kaksinpeli;
     
     public Logiikka(IkkunaIF nakyma){
@@ -37,7 +37,7 @@ public class Logiikka {
     }
     
     public void aloitaYksinpeli(String nimi1, int ruudukonkoko, int[] laivojenkoot){
-        yksinpeli = new Yksinpeli(nimi1, ruudukonkoko, laivojenkoot);
+        yksinpeli = new Peli(nimi1, ruudukonkoko, laivojenkoot);
         yksinpeli.luoVarvaysRuutu();
     }
     

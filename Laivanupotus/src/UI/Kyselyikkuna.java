@@ -133,9 +133,11 @@ public class Kyselyikkuna extends JFrame implements IkkunaIF {
             if(moderni.isSelected()){
                 alustaLaivojenKoot();
                 ohjain.aloitaYksinpeli(pelaaja1nimi.getText(), ruudukonkoko, kustomkoot);
+                dispose();
             }
             else{
                 ohjain.aloitaYksinpeli(pelaaja1nimi.getText(), 10, defkoot);
+                dispose();
             }
         }
     }

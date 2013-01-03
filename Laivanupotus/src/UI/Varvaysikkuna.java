@@ -4,16 +4,18 @@ package UI;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Stack;
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
-import sovelluslogiikka.Yksinpeli;
+import sovelluslogiikka.Peli;
 
 public class Varvaysikkuna extends JFrame{
     
-    private Yksinpeli ohjain;
+    private Peli ohjain;
     private JPanel tausta, ruutujenpohja, tietojenpohja;
     private JLabel[][] ruudut;
     private JLabel laivojajaljella;
@@ -22,6 +24,7 @@ public class Varvaysikkuna extends JFrame{
     private Stack laivojenkoot;
     private JRadioButton pysty, vaaka;
     private ButtonGroup asento;
+    private JButton jatka;
     private int asetettavalaiva;
     
     public Varvaysikkuna(int koko, int[] laivojenkoot){
@@ -38,7 +41,7 @@ public class Varvaysikkuna extends JFrame{
         }
     }
     
-    public void asetaOhjain(Yksinpeli ohjain){
+    public void asetaOhjain(Peli ohjain){
         this.ohjain = ohjain;
     }
     
@@ -60,6 +63,8 @@ public class Varvaysikkuna extends JFrame{
         varausvari = new Color(128, 128, 128);
         tietojenpohja = new JPanel();
         ruutujenpohja = new JPanel();
+        jatka = new JButton("Taisteluun!");
+        jatka.addActionListener(new TaistelunAloitusnappi());
         ruutujenpohja.setLayout(new GridLayout(ruudukonkoko, ruudukonkoko));
         tausta.setLayout(new BorderLayout());
         teeRuudukko();
@@ -75,12 +80,12 @@ public class Varvaysikkuna extends JFrame{
         pysty.setSelected(true);
         tietojenpohja.add(pysty);
         tietojenpohja.add(vaaka);
-        tietojenpohja.add(laivojajaljella);        
+        tietojenpohja.add(laivojajaljella);
+        tietojenpohja.add(jatka);
         ruutujenpohja.setSize(500, 500);
         tausta.setSize(600, 500);
         tausta.add(ruutujenpohja, BorderLayout.CENTER);
-        tausta.add(tietojenpohja, BorderLayout.NORTH);
-        
+        tausta.add(tietojenpohja, BorderLayout.NORTH);        
     }
     
     public void haeAsetettavanLaivanPituus(){
@@ -88,7 +93,7 @@ public class Varvaysikkuna extends JFrame{
             asetettavalaiva = (int) laivojenkoot.pop();
         }
         else{
-            
+            asetettavalaiva = 0;
         }
     }
     
@@ -128,5 +133,20 @@ public class Varvaysikkuna extends JFrame{
     
     public void naytaVirheilmoitus(){
         JOptionPane.showMessageDialog(null, "Laivan asettaminen ruudukkoon ei onnistunut! Kokeile jotain muuta paikkaa.", "Oho!", JOptionPane.ERROR_MESSAGE);
+    }
+    
+    public class TaistelunAloitusnappi implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if(asetettavalaiva == 0){
+                ohjain.aloitaPeli();
+                dispose();
+            }
+            else if(asetettavalaiva > 0){
+                JOptionPane.showMessageDialog(null, "Aseta laivat ensin!", "Oho!", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        
     }
 }

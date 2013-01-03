@@ -19,3 +19,42 @@ Koodausta ja suunnittelua.
 Käytetty aika: 2 tuntia.
 Käyttöliittymän suunnittelua.
 
+21.12.2012
+Käytetty aika: 2 tuntia.
+Käyttöliittymän suunnittelua.
+
+25.12.2012
+Käytetty aika: 5 tuntia.
+Pelin loogisen kulun hahmottelua. Käyttöliittymän olioiden luomista.
+
+26.12.2012
+Käytetty aika: 4 tuntia.
+Käyttöliittymää
+
+27.12.2012
+Käytetty aika: 6 tuntia.
+Käyttöliittymää ja käyttäjän syötteitä
+
+28.12.2012
+Käytetty aika: 5 tuntia.
+Käyttöliittymää
+
+29.12.2012
+Käytetty aika: 6 tuntia.
+käyttöliittymän suunnittelua
+
+30.12.2012
+Käytetty aika: 3 tuntia.
+Käyttöliittymä
+
+31.12.2012
+Käytetty aika: 4 tuntia.
+Käyttöliittymää ja mallien korjaamista.
+
+1.1.2013
+Käytetty aika: 2 tuntia.
+Käyttäjän syötteiden logiikan luomista ja toteutusta. Tekoälyn ja pelin logiikkan toteuttamista.
+
+2.1.2013
+Käytetty aika: 5 tuntia.
+Javan käyttöliittymäluokkien kanssa turhauttavaa tappelemista!

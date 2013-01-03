@@ -6,7 +6,7 @@ package Mallit;
 
 import java.util.Random;
 import java.util.Stack;
-import sovelluslogiikka.Yksinpeli;
+import sovelluslogiikka.Peli;
 
 /**
  *

@@ -5,22 +5,24 @@
 package sovelluslogiikka;
 
 import Mallit.*;
+import UI.Taisteluikkuna;
 import UI.Varvaysikkuna;
 
 /**
  *
  * @author Krisu
  */
-public class Yksinpeli {
+public class Peli {
     
     private Pelaaja pelaaja;
     private AI tekoaly;
     private Ruudukko ruudukko1, ruudukko2;
     private Varvaysikkuna varvays;
+    private Taisteluikkuna taistelu;
     private int koko;
     private int[] koot;
         
-    public Yksinpeli(String nimi, int koko, int[] koot){
+    public Peli(String nimi, int koko, int[] koot){
         pelaaja = new Pelaaja(nimi);
         ruudukko1 = new Ruudukko(koko);
         ruudukko2 = new Ruudukko(koko);
@@ -28,6 +30,10 @@ public class Yksinpeli {
         tekoaly = new AI(ruudukko2, koot);
         this.koko = koko;
         this.koot = koot;
+   }
+    
+   public Peli(Taisteluikkuna taistelu){
+       
    }
    
    public void luoVarvaysRuutu(){
@@ -47,14 +53,15 @@ public class Yksinpeli {
    }
    
    public void aloitaPeli(){
+       varvays.setVisible(false);
        varvays.dispose();
+       boolean[][] pelaajanruudut = ruudukko1.haeRuudukkoBooleantaulukkona();
+       taistelu = new Taisteluikkuna(ruudukko1.getKoko(), koot.length, pelaajanruudut);
+       taistelu.asetaOhjain(this);
    }
    
    public void pelaaVuoro(){
        
    }
    
-   public void tulosta(){
-       ruudukko2.tulosta();
-   }
 }
