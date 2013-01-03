@@ -58,3 +58,7 @@ Käyttäjän syötteiden logiikan luomista ja toteutusta. Tekoälyn ja pelin logiikka
 2.1.2013
 Käytetty aika: 5 tuntia.
 Javan käyttöliittymäluokkien kanssa turhauttavaa tappelemista!
+
+3.1.2013
+Käytetty aika: 5 tuntia.
+Uusien testien tekemistä. Uuden luokkakaavion luominen tietokoneella. Taisteluosion toteuttamista.
