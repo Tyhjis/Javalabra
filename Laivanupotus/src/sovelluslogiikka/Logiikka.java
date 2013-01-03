@@ -14,7 +14,6 @@ public class Logiikka {
     private IkkunaIF nakyma;
     private static Logiikka ohjain;
     private Peli yksinpeli;
-    private Kaksinpeli kaksinpeli;
     
     public Logiikka(IkkunaIF nakyma){
         this.nakyma = nakyma;

@@ -7,12 +7,10 @@ public class Ruudukko {
     
     private Ruutu[][] ruudukko;
     private int laivojenmaara;
-    private ArrayList<Laiva> laivat;
     
     public Ruudukko(int koko){
         ruudukko = new Ruutu[koko][koko];
         alustaRuudukko();
-        laivat = new ArrayList();
     }
     
     private void alustaRuudukko(){        
@@ -23,19 +21,24 @@ public class Ruudukko {
         }
     }
     
-    public void ammuRuutuun(int posx, int posy){
-        ruudukko[posy][posx].ammu();
+    public boolean ammuRuutuun(int posx, int posy){
+        if(!ruudukko[posy][posx].onkoAmmuttu()){
+            ruudukko[posy][posx].ammu();
+            return true;
+        }
+        return false;
     }
     
     public void poistaLaiva(){
         laivojenmaara--;
-        if(!laivat.isEmpty()){
-            
-        }
     }
     
     public int getKoko(){
         return ruudukko.length;
+    }
+    
+    public int getLaivojenMaara(){
+        return laivojenmaara;
     }
     
     public Ruutu getRuutu(int posx, int posy){
@@ -58,7 +61,6 @@ public class Ruudukko {
                 }
             }
             laiva.laivanAsetus(this);
-            laivat.add(laiva);
             laivojenmaara++;
             return true;
         }
@@ -102,5 +104,14 @@ public class Ruudukko {
             return pal; 
         }
         return null;       
+    }
+    
+    public void tulostaRuudukko(){
+        for (int i = 0; i < ruudukko.length; i++) {
+            for (int j = 0; j < ruudukko.length; j++) {
+                System.out.print(ruudukko[i][j].toString());
+            }
+            System.out.println("");
+        }
     }
 }

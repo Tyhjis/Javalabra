@@ -49,6 +49,12 @@ public class RuudukkoTest {
     
     @Test
     public void testaaTuhoutuukoLaiva(){
-        
+        Laiva laiva = new Laiva(3);
+        ruudukko.lisaaLaiva(laiva, 3, 2, true);
+        assertTrue(ruudukko.getLaivojenMaara() == 1);
+        for(int i = 3; i <= 3+3-1; i++){
+            ruudukko.ammuRuutuun(i, 2);
+        }
+        assertTrue(ruudukko.getLaivojenMaara() == 0);
     }
 }

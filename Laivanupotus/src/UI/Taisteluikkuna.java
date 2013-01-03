@@ -1,6 +1,7 @@
 
 package UI;
 
+import UI.Hiiritoiminnot.Ampumistapahtuma;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
@@ -109,8 +110,44 @@ public class Taisteluikkuna extends JFrame {
         }
     }
     
-    public void ammuTekoalynRuutuun(int posx, int posy){
+    public void paivitaTiedot(int pelships, int aiships){
+        /*Päivittää laivojen ja vuorojen määrän.*/
+        laivoja1.setText("Pelaajan laivat: "+new Integer(pelships).toString());
+        laivoja2.setText("Tekoalyn laivat: "+new Integer(aiships).toString());
+        vuoro++;
+        vuorot.setText("Vuoro: "+new Integer(vuoro).toString());
+    }
+    
+    public void voitto(){
         
+    }
+    
+    public void havio(){
+        
+    }
+    
+    public void ammuTekoalynRuudukkoon(int posx, int posy){
+        ohjain.pelaaVuoro(posx, posy);
+    }
+    
+    public void maalaaAIruudKeltaiseksi(int posx, int posy){
+        ruudut2[posy][posx].setBackground(keltainen);
+    }
+    
+    public void maalaaAIruudPunaiseksi(int posx, int posy){
+        ruudut2[posy][posx].setBackground(punainen);
+    }
+    
+    public void maalaaPelruudKeltaiseksi(int posx, int posy){
+        ruudut1[posy][posx].setBackground(keltainen);
+    }
+    
+    public void maalaaPelruudPunaiseksi(int posx, int posy){
+        ruudut1[posy][posx].setBackground(punainen);
+    }
+    
+    public void esitaVirheilmoitus(){
+        JOptionPane.showMessageDialog(null, "Valitse jokin muu ruutu.", "Oho!", JOptionPane.ERROR_MESSAGE);
     }
     
     

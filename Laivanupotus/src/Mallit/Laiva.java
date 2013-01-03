@@ -8,6 +8,7 @@ public class Laiva {
     
     public Laiva(int pituus){
         this.pituus = pituus;
+        ruudukko = null;
     }
     
     public int getPituus(){
@@ -15,8 +16,10 @@ public class Laiva {
     }
     
     public void ammuLaivaan(){
-        pituus--;
-        if(pituus == 0){
+        if(pituus > 0){
+           pituus--; 
+        }
+        if(pituus == 0 && ruudukko != null){
             ruudukko.poistaLaiva();
         }
     }

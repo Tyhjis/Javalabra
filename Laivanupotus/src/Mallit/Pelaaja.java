@@ -20,8 +20,4 @@ public class Pelaaja {
     public String getNimi(){
         return nimi;
     }
-    
-    public void asetaRuudukko(Ruudukko r){
-        this.r = r;
-    }
 }

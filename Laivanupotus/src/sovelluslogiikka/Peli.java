@@ -26,14 +26,10 @@ public class Peli {
         pelaaja = new Pelaaja(nimi);
         ruudukko1 = new Ruudukko(koko);
         ruudukko2 = new Ruudukko(koko);
-        pelaaja.asetaRuudukko(ruudukko1);
         tekoaly = new AI(ruudukko2, koot);
+        tekoaly.asetaLaivatRuudukkoon();
         this.koko = koko;
         this.koot = koot;
-   }
-    
-   public Peli(Taisteluikkuna taistelu){
-       
    }
    
    public void luoVarvaysRuutu(){
@@ -45,23 +41,60 @@ public class Peli {
        Laiva laiva = new Laiva(laivanpit);
        boolean hor = horizontal;
        if(ruudukko1.lisaaLaiva(laiva, posx, posy, hor)){
-           varvays.maalaaRuudut(laivanpit, posx, posy, hor);
+           if(varvays != null){
+               varvays.maalaaRuudut(laivanpit, posx, posy, hor);
+           }
        }
        else{
-           varvays.naytaVirheilmoitus();
+           if(varvays != null){
+               varvays.naytaVirheilmoitus();
+           }           
        }
    }
    
    public void aloitaPeli(){
-       varvays.setVisible(false);
-       varvays.dispose();
+       //Luo Taisteluikkunan
        boolean[][] pelaajanruudut = ruudukko1.haeRuudukkoBooleantaulukkona();
        taistelu = new Taisteluikkuna(ruudukko1.getKoko(), koot.length, pelaajanruudut);
        taistelu.asetaOhjain(this);
    }
    
-   public void pelaaVuoro(){
-       
+   public void pelaaVuoro(int posx, int posy){
+       //Pelaajan ammunta
+       if(ruudukko2.ammuRuutuun(posx, posy)){
+           if(ruudukko2.getRuutu(posx, posy).onkoTuhottu()){
+               taistelu.maalaaAIruudKeltaiseksi(posx, posy);
+           }
+           else{
+               taistelu.maalaaAIruudPunaiseksi(posx, posy);
+           }
+           tekoalynAmmunta();
+           int pellaivat = ruudukko1.getLaivojenMaara();
+           int ailaivat = ruudukko2.getLaivojenMaara();
+           taistelu.paivitaTiedot(pellaivat, ailaivat);
+       }
+       else{
+           taistelu.esitaVirheilmoitus();
+       }
    }
    
+   public void tekoalynAmmunta(){
+       //Tekoalyn ammunta
+       if(taistelu != null){
+          int[] tekoalynkoord;
+          boolean ammuttu = false;
+          while(!ammuttu){
+              tekoalynkoord = tekoaly.haeAmmuttavatKoordinaatit();
+              int x = tekoalynkoord[0];
+              int y = tekoalynkoord[1];
+              ammuttu = ruudukko1.ammuRuutuun(x, y);
+              if(ruudukko1.getRuutu(x, y).onkoTuhottu() && ammuttu){
+                  taistelu.maalaaPelruudKeltaiseksi(x, y);
+              }
+              else if(!ruudukko1.getRuutu(x, y).onkoTuhottu() && ammuttu){
+                  taistelu.maalaaPelruudPunaiseksi(x, y);
+              }
+          }
+       }       
+   }
 }

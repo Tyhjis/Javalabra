@@ -1,15 +1,18 @@
 
-package UI;
+package UI.Hiiritoiminnot;
 
+import UI.Varvaysikkuna;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import sovelluslogiikka.Peli;
 
-public class Ampumistapahtuma implements MouseListener {
+public class Varvaystapahtuma implements MouseListener {
 
-    private int posx, posy;
-    private Taisteluikkuna nakyma;
+    private final int posx;
+    private final int posy;
+    private Varvaysikkuna nakyma;
     
-    public Ampumistapahtuma(int posx, int posy, Taisteluikkuna nakyma){
+    public Varvaystapahtuma(int posx, int posy, Varvaysikkuna nakyma){
         this.posx = posx;
         this.posy = posy;
         this.nakyma = nakyma;
@@ -17,7 +20,7 @@ public class Ampumistapahtuma implements MouseListener {
     
     @Override
     public void mouseClicked(MouseEvent e) {
-        
+        nakyma.sijoitaLaiva(posx, posy);
     }
 
     @Override
