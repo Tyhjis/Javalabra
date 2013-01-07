@@ -27,7 +27,11 @@ public class Varvaysikkuna extends JFrame{
     private ButtonGroup asento;
     private JButton jatka;
     private int asetettavalaiva;
-    
+    /**
+     * Konstruktori. Luo uuden Varvaysikkunan annetuilla parametreilla.
+     * @param koko Haluttu ruudukon koko.
+     * @param laivojenkoot Kokonaislukutaulukko, joka sisältää halutut laivojen pituudet.
+     */
     public Varvaysikkuna(int koko, int[] laivojenkoot){
         this.ruudukonkoko = koko;
         luoKokojenPino(laivojenkoot);
@@ -41,12 +45,17 @@ public class Varvaysikkuna extends JFrame{
             laivojenkoot.push(koot[i]);
         }
     }
-    
+    /**
+     * Kontrollerin asettaminen MVC-tyyppisessä ohjelmassa.
+     * @param ohjain Peli-tyypin kontrolleri.
+     */
     public void asetaOhjain(Peli ohjain){
         this.ohjain = ohjain;
     }
-    
-    public void muodostaKayttoliittyma(){
+    /**
+     * Käyttöliittymän komponenttien muodostaminen.
+     */
+    private void muodostaKayttoliittyma(){
         setTitle("Laivanupotus");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         luoOliot();
@@ -56,8 +65,10 @@ public class Varvaysikkuna extends JFrame{
         setSize(500, 500);
         setVisible(true);
     }
-    
-    public void luoOliot(){
+    /**
+     * Apumetodi käyttöliittymän muodostamiseen. Luo käyttöliittymän oliot.
+     */
+    private void luoOliot(){
         tausta = new JPanel();
         ruudut = new JLabel[ruudukonkoko][ruudukonkoko];
         rajavari = new Color(0, 0, 0);
@@ -74,7 +85,9 @@ public class Varvaysikkuna extends JFrame{
         vaaka = new JRadioButton("Vaaka-asento");        
         laivojajaljella = new JLabel(new Integer(laivojenkoot.size()).toString());
     }
-    
+    /**
+     * Apumetodi käyttöliittymän muodostamiseen. Asettaa komponentit käyttöliittymään.
+     */
     public void asetaKomponentit(){
         asento.add(pysty);
         asento.add(vaaka);
@@ -88,7 +101,9 @@ public class Varvaysikkuna extends JFrame{
         tausta.add(ruutujenpohja, BorderLayout.CENTER);
         tausta.add(tietojenpohja, BorderLayout.NORTH);        
     }
-    
+    /**
+     * Määrittelee asetettavan laivan pituuden.
+     */
     public void haeAsetettavanLaivanPituus(){
         if(!laivojenkoot.empty()){
             asetettavalaiva = (int) laivojenkoot.pop();
@@ -97,7 +112,9 @@ public class Varvaysikkuna extends JFrame{
             asetettavalaiva = 0;
         }
     }
-    
+    /**
+     * Luo ruudukon, joka kuvastaa laivanupotuspelin koordinaatistoa graafisesti.
+     */
     private void teeRuudukko(){
         for (int i = 0; i < ruudukonkoko; i++) {
             for (int j = 0; j < ruudukonkoko; j++) {
@@ -109,7 +126,13 @@ public class Varvaysikkuna extends JFrame{
             }
         }
     }
-    
+    /**
+     * Näyttää graafisesti mihin laiva on asetettu ruudukolla.
+     * @param pit Asetettavan laivan pituus.
+     * @param posx Haluttu x-akselin koordinaatti.
+     * @param posy Haluttu y-akselin koordinaatti.
+     * @param horizontal Kertoo, asetetaanko laiva vaaka- tai pystyasentoon. True = vaaka. False = pysty.
+     */
     public void maalaaRuudut(int pit, int posx, int posy, boolean horizontal){
         if(horizontal){
             for(int i = posx; i <= posx+pit-1; i++){
@@ -123,19 +146,23 @@ public class Varvaysikkuna extends JFrame{
         }
         haeAsetettavanLaivanPituus();
     }
-    
-    public void naytaLaivaRuudukossa(int posx, int posy){
-        
-    }
-    
+    /**
+     * Kutsuu kontrolleria asettamaan laivan haluttuun paikkaan.
+     * @param posx Haluttu x-akselin koordinaatti.
+     * @param posy Haluttu y-akselin koordinaatti.
+     */
     public void sijoitaLaiva(int posx, int posy){
         ohjain.varvaaLaiva(asetettavalaiva, posx, posy, vaaka.isSelected());
     }
-    
+    /**
+     * Näyttää virheilmoituksen, jos laivaa ei voitu sovittaa haluttuun paikkaan.
+     */
     public void naytaVirheilmoitus(){
         JOptionPane.showMessageDialog(null, "Laivan asettaminen ruudukkoon ei onnistunut! Kokeile jotain muuta paikkaa.", "Oho!", JOptionPane.ERROR_MESSAGE);
     }
-    
+    /**
+     * Toiminto, joka jatkaa peliin.
+     */
     public class TaistelunAloitusnappi implements ActionListener {
 
         @Override

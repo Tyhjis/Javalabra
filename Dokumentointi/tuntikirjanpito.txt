@@ -62,3 +62,15 @@ Javan käyttöliittymäluokkien kanssa turhauttavaa tappelemista!
 3.1.2013
 Käytetty aika: 5 tuntia.
 Uusien testien tekemistä. Uuden luokkakaavion luominen tietokoneella. Taisteluosion toteuttamista.
+
+4.1.2013
+Käytetty aika: 3 tuntia.
+Koodikatselmoinnin aloitus.
+
+5.1.2013
+Käytetty aika: 5 tuntia.
+Koodikatselmoinnin saattaminen loppuun. (Nimim. Cobrellon koodi).
+
+6.-7.1.2013
+Käytetty aika: 8 tuntia.
+Tiedostonkäsittelyn suunnittelua ja toteutusta. Javadocin kirjoittamista. Kahden sekvenssikaavion piirtäminen. Luokkakaavion päivitys.

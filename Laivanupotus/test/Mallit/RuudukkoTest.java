@@ -57,4 +57,16 @@ public class RuudukkoTest {
         }
         assertTrue(ruudukko.getLaivojenMaara() == 0);
     }
+    
+    @Test
+    public void testaaRuudukonLuominenParametrillaNolla1(){
+        Ruudukko uusi = new Ruudukko(0);
+        assertTrue(uusi.haeRuudukkoBooleantaulukkona() == null);
+    }
+    
+    @Test
+    public void testaaRuudukonLuominenParametrillaNolla2(){
+        Ruudukko uusi = new Ruudukko(0);
+        assertTrue(uusi.getKoko() == 0);
+    }
 }

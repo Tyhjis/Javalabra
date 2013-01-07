@@ -14,9 +14,9 @@ import org.junit.BeforeClass;
  *
  * @author Krisu
  */
-public class TiedostonkasittelyTest {
+public class PelinAloitusTest {
     
-    public TiedostonkasittelyTest() {
+    public PelinAloitusTest() {
     }
     
     @Before

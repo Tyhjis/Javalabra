@@ -5,11 +5,11 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
-import sovelluslogiikka.Logiikka;
+import sovelluslogiikka.PelinAloitus;
 
-public class Kyselyikkuna extends JFrame implements IkkunaIF {
+public class Kyselyikkuna extends JFrame {
 
-    private Logiikka ohjain;
+    private PelinAloitus ohjain;
     private JPanel pohja, sisalto, kyselynsisalto;
     private ButtonGroup moodivalinnat, pelaajavalinnat;
     private JRadioButton klassinen, moderni, yksipelaaja, kaksipelaajaa;
@@ -22,18 +22,25 @@ public class Kyselyikkuna extends JFrame implements IkkunaIF {
     private final Object[] valinnat;
     private JComboBox[] valitse;
     private JLabel[] indeksit;
-    
+    /**
+     * Konstruktori. Kutsuu kutsuu muodostaKayttoliittyma-metodia.
+     */
     public Kyselyikkuna(){
         valinnat = new Object[] {1, 2, 3, 4, 5};
         muodostaKayttoliittyma();
     }
     
-    @Override
-    public void asetaOhjain(Logiikka ohjain) {
+    /**
+     * Asettaa kontrollerin MVC-tyyppisessä ohjelmassa.
+     * @param ohjain Viite PelinAloitus-tyyppiseen olioon.
+     */
+    public void asetaOhjain(PelinAloitus ohjain) {
         this.ohjain = ohjain;
     }
 
-    @Override
+    /**
+     * Luo graafisen käyttöliittymän komponentit.
+     */
     public void muodostaKayttoliittyma() {
         setTitle("Laivanupotus");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -61,8 +68,10 @@ public class Kyselyikkuna extends JFrame implements IkkunaIF {
         setSize(500, 500);
         setVisible(true);
     }
-    
-    public void lisaaKomponentitKayttoliittymaan() {
+    /**
+     * Lisää komponentit, joista käyttäjä voi valita haluamansa syötteen.
+     */
+    private void lisaaKomponentitKayttoliittymaan() {
         valitse = new JComboBox[laivojenmaara];
         indeksit = new JLabel[laivojenmaara];
         kyselynsisalto.setLayout(new GridLayout(laivojenmaara, 2));
@@ -100,8 +109,13 @@ public class Kyselyikkuna extends JFrame implements IkkunaIF {
             kustomkoot[i] = n.intValue();
         }
     }
-    
-    public boolean tarkistaSyote(String s, boolean ruudukko){
+    /**
+     * Syötteen tarkistus.
+     * @param s annettu syöte
+     * @param ruudukko true, jos tarkistetaan ruudukkoa koskevat syötteet.
+     * @return palauttaa true, jos syöte oli oikea. Muuten false.
+     */
+    private boolean tarkistaSyote(String s, boolean ruudukko){
         Integer n = new Integer("-1");
         try{
             if(s != null){
@@ -125,18 +139,20 @@ public class Kyselyikkuna extends JFrame implements IkkunaIF {
         return false;
     }
     
-    
+    /**
+     * Toiminta pelin aloittamiselle.
+     */
     class JatkaNapinToiminta implements ActionListener{
         
         @Override
         public void actionPerformed(ActionEvent e) {
             if(moderni.isSelected()){
                 alustaLaivojenKoot();
-                ohjain.aloitaYksinpeli(pelaaja1nimi.getText(), ruudukonkoko, kustomkoot);
+                ohjain.luoPeli(pelaaja1nimi.getText(), ruudukonkoko, kustomkoot);
                 dispose();
             }
             else{
-                ohjain.aloitaYksinpeli(pelaaja1nimi.getText(), 10, defkoot);
+                ohjain.luoPeli(pelaaja1nimi.getText(), 10, defkoot);
                 dispose();
             }
         }

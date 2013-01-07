@@ -2,17 +2,27 @@
 package Mallit;
 
 import java.util.ArrayList;
-
+/**
+ * Luokka, joka kuvastaa laivanupotuspelin koordinaatistoa. Koordinaatiston ruudut koostuvat Ruutu-olioista.
+ * @author Krisu
+ */
 public class Ruudukko {
     
     private Ruutu[][] ruudukko;
     private int laivojenmaara;
-    
+    /**
+     * Konstruktori. Alustaa ruuudukon.
+     * @param koko Ruudukon haluttu koko. Jos parametrina annetaan luku 0. Konstruktori ei tee mitään.
+     */
     public Ruudukko(int koko){
-        ruudukko = new Ruutu[koko][koko];
-        alustaRuudukko();
+        if(koko > 0){
+            ruudukko = new Ruutu[koko][koko];
+            alustaRuudukko();  
+        }        
     }
-    
+    /**
+     * 
+     */
     private void alustaRuudukko(){        
         for(int i = 0; i < ruudukko.length; i++){
             for(int j = 0; j < ruudukko.length; j++){
@@ -20,7 +30,12 @@ public class Ruudukko {
             }
         }
     }
-    
+    /**
+     * Haluttuun ruutuun ampuminen.
+     * @param posx kertoo x-akselin koordinaatin.
+     * @param posy kertoo y-akselin koordinaatin.
+     * @return palauttaa true, jos ruutuun ei ollut vielä ammuttu. Muuten false.
+     */
     public boolean ammuRuutuun(int posx, int posy){
         if(!ruudukko[posy][posx].onkoAmmuttu()){
             ruudukko[posy][posx].ammu();
@@ -28,23 +43,55 @@ public class Ruudukko {
         }
         return false;
     }
-    
+    /**
+     * Vähentää laivojen määrää yhdellä.
+     */
     public void poistaLaiva(){
         laivojenmaara--;
     }
-    
+    /**
+     * Palauttaa ruudukon koon.
+     * @return ruudukon koon palautus, jos ruudukko on luotu. Muuten palauttaa 0.
+     */
     public int getKoko(){
-        return ruudukko.length;
+        if(ruudukko != null){
+            return ruudukko.length;
+        }
+        else{
+            return 0;
+        }
     }
-    
+    /**
+     * 
+     * @return Ruudukossa vielä olevien laivojen määrä.
+     */
     public int getLaivojenMaara(){
         return laivojenmaara;
     }
-    
+    /**
+     * Palauttaa viitteen haluttuun ruutuun koordinaatistossa.
+     * @param posx
+     * @param posy
+     * @return palauttaa viitteen jos annetut koordinaatit ovat ruudukon rajojen sisällä. Muuten palauttaa null.
+     */
     public Ruutu getRuutu(int posx, int posy){
-        return ruudukko[posy][posx];
+        if(tarkistaKoordinaatit(posx, posy)){
+            return ruudukko[posy][posx];
+        }
+        return null;
     }
     
+    private boolean tarkistaKoordinaatit(int posx, int posy){
+        return posx >= 0 && posx < getKoko() && posy >= 0 && posy < getKoko();
+    }
+    /**
+     * Laivan lisääminen ruudukkoon.
+     * @param laiva asettaa viitteen laivalle.
+     * @param posx Haluttu x-akselin koordinaatti laivan kokalle.
+     * @param posy Haluttu y-akselin koordinaatti laivan kokalle.
+     * @param horizontal Kertoo halutaanko laiva asettaa ruudukkoon vaakatasoon vai ei. True = vaakataso. False = pystyasento.
+     * @return palauttaa true, jos laivan asettaminen onnistui. Muuten false.
+     */
     public boolean lisaaLaiva(Laiva laiva, int posx, int posy, boolean horizontal){
         //Laivan asettaminen ruudukkoon. Posx ja posy -muuttujat kertovat laivan kokan halutun paikan. Horizontal taas onko laiva vaakatasossa vai ei.
         int pit = laiva.getPituus();
@@ -67,7 +114,7 @@ public class Ruudukko {
         return false; //Jos ei onnistunut palautetaan false.
     }
     
-    public boolean checker(int pit, int posx, int posy, boolean horizontal){
+    private boolean checker(int pit, int posx, int posy, boolean horizontal){
         if(horizontal){
             if(posx+pit-1 > ruudukko.length-1){
                 return false;
@@ -90,7 +137,10 @@ public class Ruudukko {
         }
         return true; //Jos vapaa paikka löytyy, palautetaan true.        
     }
-    
+    /**
+     * Palauttaa viitteen ruudukosta kaksiulotteisena boolean-taulukkona. taulukon alkio on true, jos kyseisessä paikassa on laiva.
+     * @return kaksiulotteinen boolean-taulukko.
+     */
     public boolean[][] haeRuudukkoBooleantaulukkona(){
         /*Palauttaa ruudukon boolean-taulukkona*/
         if(ruudukko != null){
@@ -104,14 +154,5 @@ public class Ruudukko {
             return pal; 
         }
         return null;       
-    }
-    
-    public void tulostaRuudukko(){
-        for (int i = 0; i < ruudukko.length; i++) {
-            for (int j = 0; j < ruudukko.length; j++) {
-                System.out.print(ruudukko[i][j].toString());
-            }
-            System.out.println("");
-        }
     }
 }

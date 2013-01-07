@@ -19,6 +19,13 @@ public class AI {
     private int koko, laivat;
     private Stack laivojenkoot;
     
+    /**
+     * AI-luokan konstruktori, joka asettaa luokan perusmuuttujat kohdalleen, sekä kutsuu yksityistä metodia, joka luo pinon, josta laivat yksitellen sijoitetaan.
+     * 
+     * @param r Ruudukko-olio, joka antaa viitteen tekoälyn muokattavaan ruudukkoon.
+     * @param laivojenkoot Kokonaislukutaulukko, joka sisältää ruudukkoon asetettavien taulukoiden koot.
+     */
+    
     public AI(Ruudukko r, int[] laivojenkoot){
         this.r = r;
         luoLaivojenPino(laivojenkoot);
@@ -35,7 +42,9 @@ public class AI {
             laivojenkoot.push(koot[i]);
         }
     }
-    
+    /**
+     * Asettaa laivat viitattuun ruudukkoon käyttäen kolmea satunnaislukugeneraattoria.
+     */
     public void asetaLaivatRuudukkoon(){
         if(r != null){
            boolean horizontal;
@@ -54,7 +63,10 @@ public class AI {
         }
         
     }
-    
+    /**
+     * 
+     * @return 
+     */
     public int haeAsetettavaLaiva(){
         int asetettavalaiva = 0;
         if(!laivojenkoot.empty()){
@@ -63,6 +75,10 @@ public class AI {
         return asetettavalaiva;
     }
     
+     /**
+      * Luo kokonaislukutaulukon kahden satunnaislukugeneraattorin avulla.
+      * @return palauttaa kokonaislukutaulukon.
+      */
     public int[] haeAmmuttavatKoordinaatit(){
         /*Palauttaa koordinaatit, joihin tekoäly haluaa ampua.*/
         int[] pal = new int[2];

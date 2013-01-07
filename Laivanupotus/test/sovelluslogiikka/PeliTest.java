@@ -16,11 +16,19 @@ import org.junit.BeforeClass;
  */
 public class PeliTest {
     
+    Peli peli;
+    
     public PeliTest() {
     }
     
+    
     @Before
     public void setUp() {
+        peli = new Peli("nimi", 10, new int[] {1, 2, 3});
+    }
+    
+    @Test
+    public void testaaKoonAsetus(){
         
     }
 }

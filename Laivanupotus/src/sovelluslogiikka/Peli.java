@@ -5,6 +5,7 @@
 package sovelluslogiikka;
 
 import Mallit.*;
+import Tiedostonkasittely.Pisteet;
 import UI.Taisteluikkuna;
 import UI.Varvaysikkuna;
 
@@ -21,7 +22,15 @@ public class Peli {
     private Taisteluikkuna taistelu;
     private int koko;
     private int[] koot;
-        
+    private int vuoro;
+    private int pellaivat;
+    private int ailaivat;
+    /**
+     * Konstruktori. Luo peliin tarvittavat oliot.
+     * @param nimi Pelaajalle asetettava nimi.
+     * @param koko Ruudukoille asetettava sivun pituus.
+     * @param koot Kokonaislukutaulukko, joka ilmaisee Haluttujen laivojen pituudet.
+     */    
     public Peli(String nimi, int koko, int[] koot){
         pelaaja = new Pelaaja(nimi);
         ruudukko1 = new Ruudukko(koko);
@@ -30,13 +39,22 @@ public class Peli {
         tekoaly.asetaLaivatRuudukkoon();
         this.koko = koko;
         this.koot = koot;
+        this.vuoro = 0;
    }
-   
+   /**
+    * Graafisen käyttöliittymän värväysruudun luominen.
+    */
    public void luoVarvaysRuutu(){
        varvays = new Varvaysikkuna(koko, koot);
        varvays.asetaOhjain(this);
    }
-   
+   /**
+    * Kontrolloi laivojen asettelua pelaajan ruudukolle.
+    * @param laivanpit Asetettavan laivan pituus.
+    * @param posx Haluttu x-akselin koordinaatti.
+    * @param posy Haluttu y-akselin koordinaatti.
+    * @param horizontal Kertoo, halutaanko laiva asettaa vaakatasoon. True = vaaka. False = pysty.
+    */
    public void varvaaLaiva(int laivanpit, int posx, int posy, boolean horizontal){
        Laiva laiva = new Laiva(laivanpit);
        boolean hor = horizontal;
@@ -51,35 +69,96 @@ public class Peli {
            }           
        }
    }
-   
+   /**
+    * Luo uuden taisteluikkunan.
+    */
    public void aloitaPeli(){
        //Luo Taisteluikkunan
        boolean[][] pelaajanruudut = ruudukko1.haeRuudukkoBooleantaulukkona();
        taistelu = new Taisteluikkuna(ruudukko1.getKoko(), koot.length, pelaajanruudut);
        taistelu.asetaOhjain(this);
    }
-   
+   /**
+    * Pelaa vuoron. Vuoro aloitetaan pelaajan syötteillä haluttuun ruutuun.
+    * @param posx Haluttu x-akselin koordinaatti.
+    * @param posy Haluttu y-akselin koordinaatti.
+    */
    public void pelaaVuoro(int posx, int posy){
-       //Pelaajan ammunta
+       //Pelaajan ammunta. Jos ruutuun voi ampua, kutsutaan myös metodia, joka toteuttaa tekoälyn ammunnan.
        if(ruudukko2.ammuRuutuun(posx, posy)){
+           vuoro++;
            if(ruudukko2.getRuutu(posx, posy).onkoTuhottu()){
                taistelu.maalaaAIruudKeltaiseksi(posx, posy);
            }
            else{
                taistelu.maalaaAIruudPunaiseksi(posx, posy);
            }
-           tekoalynAmmunta();
-           int pellaivat = ruudukko1.getLaivojenMaara();
-           int ailaivat = ruudukko2.getLaivojenMaara();
-           taistelu.paivitaTiedot(pellaivat, ailaivat);
+           if(!tarkistaOnkoPeliOhi()){
+               tekoalynAmmunta();
+               tietojenPaivitys();
+           }
+           else{
+               tietojenPaivitys();
+               pelinLopetus();
+           }           
        }
        else{
            taistelu.esitaVirheilmoitus();
        }
    }
+
+   /**
+    * Tarkistusmetodi pelin lopettamiseen. Jos pelaajalla tai tekoälyllä ei ole enää laivoja ruudukollaan. Peli lopetetaan.
+    * @return Palauttaa true jos peli lopetetaan.
+    */
+    private boolean tarkistaOnkoPeliOhi(){
+        pellaivat = ruudukko1.getLaivojenMaara();
+        ailaivat = ruudukko2.getLaivojenMaara();
+        if(pellaivat == 0 || ailaivat == 0){
+            return true;
+        }
+        return false;
+    }
+    /**
+     * Metodi voittamisen ilmaisemiseen.
+     * @return palauttaa true, jos pelaaja on voittanut pelin.
+     */
+    private boolean voittaminen(){
+        if(ailaivat == 0){
+            return true;
+        }
+        return false;
+    }
+    /**
+     * Päivittää tiedot jäljelläolevista laivoista ja käydyistä vuoroista taisteluruudussa.
+     */
+    private void tietojenPaivitys(){
+        pellaivat = ruudukko1.getLaivojenMaara();
+        ailaivat = ruudukko2.getLaivojenMaara();
+        taistelu.paivitaTiedot(pellaivat, ailaivat, vuoro);
+    }
+    /**
+     * Pelin loppumisen toiminnot.
+     */
+    public void pelinLopetus(){
+        if(voittaminen()){
+            double pisteet = laskePisteet();
+            pelaaja.asetaPisteet(pisteet);
+            System.out.println(pelaaja.toString());
+            Pisteet tallennus = new Pisteet();
+            tallennus.kirjoitaTiedostolle(pelaaja);
+            taistelu.voitto(pelaaja.getNimi(), pisteet);
+        }
+        else{
+            taistelu.havio();
+        }
+    }
    
+   /**
+    * Hallitsee tekoälyn ampumisen metodeja.
+    */
    public void tekoalynAmmunta(){
-       //Tekoalyn ammunta
+       //Tekoalyn ammunta. AI-oliolta haetaan koordinaatit, jotka koostuvat kahdesta satunnaisluvusta.
        if(taistelu != null){
           int[] tekoalynkoord;
           boolean ammuttu = false;
@@ -95,6 +174,29 @@ public class Peli {
                   taistelu.maalaaPelruudPunaiseksi(x, y);
               }
           }
-       }       
+       }      
+   }
+   /**
+    * Saatujen pisteiden laskeminen. Pisteisiin vaikuttavat laivojen määrä, laivojen yhteenlaskettu pituus, ruudukon ruutujen kokonaismäärä sekä käydyt vuorot.
+    * @return Palauttaa pelissä saavutetut pisteet.
+    */
+   private double laskePisteet(){
+       double ruutujenm = koko*koko;
+       double yhtkoot = alustaLaivojenYhteenlasketutPituudet();
+       double laivat = koot.length;
+       double pisteet = (laivat/yhtkoot) - (laivat/ruutujenm);
+       pisteet = (pisteet/vuoro)*10000;       
+       return pisteet;
+   }
+   /**
+    * Laskee kaikkien laivojen pituudet yhteen.
+    * @return Palauttaa laivojen yhteenlasketun pituuden.
+    */
+   private double alustaLaivojenYhteenlasketutPituudet(){
+       double pal = 0;
+       for(int i = 0; i < koot.length; i++){
+           pal = pal+koot[i];
+       }
+       return pal;
    }
 }
