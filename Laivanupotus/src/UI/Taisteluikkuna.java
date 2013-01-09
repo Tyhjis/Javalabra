@@ -133,12 +133,16 @@ public class Taisteluikkuna extends JFrame {
      */
     public void voitto(String nimi, double pisteet){
         JOptionPane.showMessageDialog(null, "Onneksi olkoon "+nimi+"! Voitit. Sait "+pisteet+" pistettä.");
+        ohjain.uusiPeli();
+        dispose();
     }
     /**
      * Pelin lopetusmetodi. Pelaaja on hävinnyt pelin.
      */
     public void havio(){
         JOptionPane.showMessageDialog(null, "Oho! Valitettavasti hävisit pelin.");
+        ohjain.uusiPeli();
+        dispose();
     }
     /**
      * Kutsuu kontrolleria pelaamaan vuoron.
@@ -181,7 +185,7 @@ public class Taisteluikkuna extends JFrame {
         ruudut1[posy][posx].setBackground(punainen);
     }
     /**
-     * Esittää virheilmoituksen, jos ruutuun ei voi ampua.
+     * Esittää virheilmoituksen. Kutsutaan, jos ruutuun ei voi ampua.
      */
     public void esitaVirheilmoitus(){
         JOptionPane.showMessageDialog(null, "Valitse jokin muu ruutu.", "Oho!", JOptionPane.ERROR_MESSAGE);

@@ -1,11 +1,9 @@
 
 package UI;
 
-import Mallit.Pelaaja;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import javax.swing.*;
 import sovelluslogiikka.PelinAloitus;
 /**
@@ -14,10 +12,9 @@ import sovelluslogiikka.PelinAloitus;
  */
 public class Aloitusikkuna extends JFrame{
     
-    private JButton aloitapeli, parhaat, lataus;
-    private JPanel tausta, pelaajat;
-    private JMenuBar toiminnot;
-    private JMenu tiedosto;
+    private JButton aloitapeli;
+    private JPanel tausta;
+    private JTextField pelaajat;
     private PelinAloitus ohjain;
     /**
      * Konstruktori. Kutsuu muodostaKayttoliittyma-metodia.
@@ -39,31 +36,34 @@ public class Aloitusikkuna extends JFrame{
         setTitle("Laivanupotus");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         tausta = new JPanel();
+        pelaajat = new JTextField();
         aloitapeli = new JButton("Aloita Peli");
         aloitapeli.addActionListener(new PelinAloitusNappi());
-        parhaat = new JButton("Parhaat pelaajat");
-        parhaat.addActionListener(new ParhaatPelaajatNappi());
-        lataus = new JButton("Lataa peli");
-        toiminnot = new JMenuBar();
-        tiedosto = new JMenu("Tiedosto");
         tausta.setLayout(new BoxLayout(tausta, BoxLayout.PAGE_AXIS));
         tausta.add(aloitapeli);
-        tausta.add(parhaat);
-        tausta.add(lataus);
-        toiminnot.add(tiedosto);
-        setJMenuBar(toiminnot);
+        tausta.add(pelaajat);
         setContentPane(tausta);
-        setSize(200, 200);
+        setSize(500, 500);
         setVisible(true);
     }
     /**
      * Tarkoitus Listata parhaat pelaajat.
      * @param lista Parametrina annetaan ArrayList-olio, joka sisältää parhaat pelaajat.
      */
-    public void asetaParhaatPelaajat(ArrayList<Pelaaja> lista){
-        for(Pelaaja p: lista){
-            System.out.println(p.toString());
-        }
+    public void asetaParhaatPelaajat(String lista){
+        pelaajat.setText(lista);
+    }
+    /**
+     * Esittää virheilmoituksen, jos uuden tiedoston luonti onnistui.
+     */
+    public void esitaVirheilmoitusTiedostonLuontiOnnistui(){
+        JOptionPane.showMessageDialog(null, "Tiedostoa parhaista pelaajista ei löytynyt. Uusi tyhjä tiedosto on luotu.", "Oho!", JOptionPane.ERROR_MESSAGE);
+    }
+    /**
+     * Esittää virheilmoituksen, jos uuden tiedoston luonti epäonnistui.
+     */
+    public void esitaVirheilmoitusTiedostonLuontiEpaonnistui(){
+        JOptionPane.showMessageDialog(null, "Tiedostoan parhaista pelaajista ei löytynyt. Uutta tiedostoa ei voitu luoda.", "Oho!", JOptionPane.ERROR_MESSAGE);
     }
     /**
      * Toiminnankuuntelija pelin aloittamiselle.

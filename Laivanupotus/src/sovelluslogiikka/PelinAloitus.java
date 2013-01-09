@@ -4,9 +4,11 @@
  */
 package sovelluslogiikka;
 
+import Mallit.Pelaaja;
 import Tiedostonkasittely.Pisteet;
 import UI.Aloitusikkuna;
 import UI.Kyselyikkuna;
+import java.util.ArrayList;
 
 /**
  *
@@ -14,9 +16,10 @@ import UI.Kyselyikkuna;
  */
 public class PelinAloitus {
     
-    Aloitusikkuna start;
-    Kyselyikkuna kysely;
-    Peli peli;
+    private Aloitusikkuna start;
+    private Kyselyikkuna kysely;
+    private Pisteet pisteet;
+    private Peli peli;
     /**
      * Uuden pelin luominen.
      * @param nimi1 Pelaajalle asetettava nimi.
@@ -28,11 +31,26 @@ public class PelinAloitus {
         peli.luoVarvaysRuutu();
     }
     /**
-     * Parhaiden pelaajien listaus. Luo ilmentymän tiedostoja käsittelevästä oliosta.
+     * 
+     * @return 
      */
-    public void haeParhaatPelaajat(){
-        Pisteet pist = new Pisteet();
-        pist.lataaTiedosto();
+    public ArrayList<Pelaaja> haeParhaatPelaajat(){
+        pisteet = new Pisteet();
+        int tarkistus = pisteet.lataaTiedosto();
+        if(tarkistus != 0 && tarkistus != 3){
+            if(pisteet.luoUusiTiedosto()){
+                if(start != null){
+                    start.esitaVirheilmoitusTiedostonLuontiOnnistui();
+                }
+            }
+            else{
+               if(start != null){
+                   start.esitaVirheilmoitusTiedostonLuontiEpaonnistui();
+               }
+            }
+        }
+        ArrayList<Pelaaja> palautettava = pisteet.getLista();
+        return palautettava;
     }
     /**
      * 
@@ -45,5 +63,26 @@ public class PelinAloitus {
     public void aloita(){
         start = new Aloitusikkuna();
         start.asetaOhjain(this);
+        ArrayList<Pelaaja> pelaajat = haeParhaatPelaajat();
+        if(pelaajat != null){
+            String parhaat = "Parhaat pelaajat:\n"+luoMerkkijonoPelaajista(pelaajat);
+            start.asetaParhaatPelaajat(parhaat);
+        }
+        else{
+            start.asetaParhaatPelaajat("Parhaat pelaajat:");
+        }
+    }
+    /**
+     * Luo merkkijonon ArrayList<Pelaaja> -oliosta.
+     * @return Palauttaa merkkijonon, jossa on tiedostosta löytyneet parhaat pelaajat listattuna.
+     */
+    public String luoMerkkijonoPelaajista(ArrayList<Pelaaja> pelaajat){
+        String palautettava = "";
+        int i = 1;
+        for(Pelaaja p: pelaajat){
+            palautettava = palautettava+i+". "+p.toString()+"\n";
+            i++;
+        }
+        return palautettava;
     }
 }

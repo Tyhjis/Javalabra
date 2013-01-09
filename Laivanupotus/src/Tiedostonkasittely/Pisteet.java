@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 /**
- *
+ * Hallitsee pistetilaston tiedostoja.
  * @author Krisu
  */
 public class Pisteet {
@@ -21,16 +21,17 @@ public class Pisteet {
     ObjectInputStream oin;
     FileOutputStream fout;
     FileInputStream fin;
+    private final String tiedostonnimi;
     
     public Pisteet(){
-        
+        tiedostonnimi = "pojot";
     }
     /**
      * Uuden tiedoston luominen.
      * @return Palauttaa true, jos tiedoston luominen onnistui.
      */
     public boolean luoUusiTiedosto(){
-        f = new File("pojot.txt");
+        f = new File(tiedostonnimi);
         try{
             f.createNewFile();
         }
@@ -40,30 +41,30 @@ public class Pisteet {
         return true;
     }
     /**
-     * Jo olemassaolevan tiedoston lataaminen.
+     * Lataa olemassaolevan tiedoston.
+     * @return Palauttaa 1, jos tiedostoa ei löytynyt. Palauttaa 2, jos lukeminen ei onnistunut ja 3, jos tiedosto on tyhjä.
      */
-    public void lataaTiedosto(){
+    public int lataaTiedosto(){
         try{
-            fin = new FileInputStream("pojot.txt");
+            fin = new FileInputStream(tiedostonnimi);
             oin = new ObjectInputStream(fin);
-            lista = (ArrayList) oin.readObject();
+            lista = (ArrayList<Pelaaja>) oin.readObject();
         }
         catch(FileNotFoundException ex){
-            System.err.print(ex);
-            luoUusiTiedosto();
+            return 1;
         }
         catch(IOException ex){
-            System.err.print(ex);
-            luoUusiTiedosto();
+            return 2;
         }
         catch(ClassNotFoundException ex){
-            System.err.print(ex);
+            return 3;
         }
+        return 0;
     }
     /**
      * Jo olemassaolevaan tiedostoon kirjoittaminen.
-     * @param p
-     * @return 
+     * @param p Kirjoitettava Pelaaja-olio.
+     * @return Palauttaa true, jos kirjoittaminen onnistui.
      */
     public boolean kirjoitaTiedostolle(Pelaaja p){
         lataaTiedosto();
@@ -76,9 +77,9 @@ public class Pisteet {
         }
         
         try{
-            fout = new FileOutputStream("pojot.txt");
+            fout = new FileOutputStream(tiedostonnimi);
             oout = new ObjectOutputStream(fout);
-            oout.writeObject(fout);
+            oout.writeObject(lista);
         }
         catch(IOException ex){
             return false;

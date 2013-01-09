@@ -5,6 +5,8 @@
 package Mallit;
 
 import java.io.Serializable;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 
 /**
  *
@@ -20,6 +22,7 @@ public class Pelaaja implements Serializable {
      */
     public Pelaaja(String nimi){
         this.nimi = nimi;
+        pisteet = 0;
     }
     /**
      * Nimen palautus
@@ -49,6 +52,7 @@ public class Pelaaja implements Serializable {
      */
     @Override
     public String toString(){
-        return nimi+" Pisteet: "+pisteet;
+        NumberFormat merkitsevat = new DecimalFormat("#0.000");        
+        return nimi+". Pisteet: "+merkitsevat.format(pisteet);
     }
 }

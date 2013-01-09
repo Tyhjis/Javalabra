@@ -8,9 +8,11 @@ import Mallit.*;
 import Tiedostonkasittely.Pisteet;
 import UI.Taisteluikkuna;
 import UI.Varvaysikkuna;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 
 /**
- *
+ * Kontrolleri. Pitää yllä pelin toimintoja.
  * @author Krisu
  */
 public class Peli {
@@ -96,6 +98,9 @@ public class Peli {
            if(!tarkistaOnkoPeliOhi()){
                tekoalynAmmunta();
                tietojenPaivitys();
+               if(tarkistaOnkoPeliOhi()){
+                   pelinLopetus();
+               }
            }
            else{
                tietojenPaivitys();
@@ -153,6 +158,13 @@ public class Peli {
             taistelu.havio();
         }
     }
+    /**
+     * Luo uuden pelin.
+     */
+    public void uusiPeli(){
+        PelinAloitus uusi = new PelinAloitus();
+        uusi.aloita();        
+    }
    
    /**
     * Hallitsee tekoälyn ampumisen metodeja.
@@ -185,7 +197,7 @@ public class Peli {
        double yhtkoot = alustaLaivojenYhteenlasketutPituudet();
        double laivat = koot.length;
        double pisteet = (laivat/yhtkoot) - (laivat/ruutujenm);
-       pisteet = (pisteet/vuoro)*10000;       
+       pisteet = (pisteet/vuoro)*10000;
        return pisteet;
    }
    /**
@@ -193,10 +205,10 @@ public class Peli {
     * @return Palauttaa laivojen yhteenlasketun pituuden.
     */
    private double alustaLaivojenYhteenlasketutPituudet(){
-       double pal = 0;
+       double pituudet = 0;
        for(int i = 0; i < koot.length; i++){
-           pal = pal+koot[i];
+           pituudet = pituudet+koot[i];
        }
-       return pal;
+       return pituudet;
    }
 }

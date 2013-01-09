@@ -9,7 +9,7 @@ import java.util.Stack;
 import sovelluslogiikka.Peli;
 
 /**
- *
+ * Laivanupotuspelin tekoäly. Sisältää laivojen asettamista ja ruudukkoon ampumista hallitsevat metodit.
  * @author Krisu
  */
 public class AI {
@@ -24,8 +24,7 @@ public class AI {
      * 
      * @param r Ruudukko-olio, joka antaa viitteen tekoälyn muokattavaan ruudukkoon.
      * @param laivojenkoot Kokonaislukutaulukko, joka sisältää ruudukkoon asetettavien taulukoiden koot.
-     */
-    
+     */    
     public AI(Ruudukko r, int[] laivojenkoot){
         this.r = r;
         luoLaivojenPino(laivojenkoot);

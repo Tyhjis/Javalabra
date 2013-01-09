@@ -94,16 +94,16 @@ public class Ruudukko {
      */
     public boolean lisaaLaiva(Laiva laiva, int posx, int posy, boolean horizontal){
         //Laivan asettaminen ruudukkoon. Posx ja posy -muuttujat kertovat laivan kokan halutun paikan. Horizontal taas onko laiva vaakatasossa vai ei.
-        int pit = laiva.getPituus();
+        int pituus = laiva.getPituus();
         //Ensin tarkistetaan onko vapaata paikkaa tässä kohdassa laivalle.
-        if(checker(pit, posx, posy, horizontal)){
+        if(tarkistaVoikoLaivanLisata(pituus, posx, posy, horizontal)){
             if(horizontal){
-                for(int i = posx; i <= posx+pit-1; i++){
+                for(int i = posx; i <= posx+pituus-1; i++){
                     ruudukko[posy][i].asetaLaiva(laiva);
                 }
             }
             else{
-                for(int i = posy; i <= posy+pit-1; i++){
+                for(int i = posy; i <= posy+pituus-1; i++){
                     ruudukko[i][posx].asetaLaiva(laiva);
                 }
             }
@@ -113,23 +113,30 @@ public class Ruudukko {
         }
         return false; //Jos ei onnistunut palautetaan false.
     }
-    
-    private boolean checker(int pit, int posx, int posy, boolean horizontal){
-        if(horizontal){
-            if(posx+pit-1 > ruudukko.length-1){
+    /**
+     * Tarkistaa voiko laivan lisätä haluttuun kohtaan ruudukolle.
+     * @param pituus Asetettavan laivan pituus.
+     * @param posx Haluttu x-koordinaatin sijainti.
+     * @param posy Haluttu y-koordinaatin sijainti.
+     * @param vaakataso Kertoo halutaanko laiva asettaa vaakatasoon. True, jos vaakataso.
+     * @return Palauttaa true, jos laiva voidaan asettaa ruudukkoon.
+     */
+    private boolean tarkistaVoikoLaivanLisata(int pituus, int posx, int posy, boolean vaakataso){
+        if(vaakataso){
+            if(posx+pituus-1 > ruudukko.length-1){
                 return false;
             }
-            for(int i = posx; i <= posx+pit-1; i++){
+            for(int i = posx; i <= posx+pituus-1; i++){
                 if(ruudukko[posy][i].sisaltaakoLaivan()){
                     return false;
                 }
             }
         }
         else{
-            if(posy+pit-1 > ruudukko.length-1){
+            if(posy+pituus-1 > ruudukko.length-1){
                 return false;
             }
-            for(int i = posy; i <= posy+pit-1; i++){
+            for(int i = posy; i <= posy+pituus-1; i++){
                 if(ruudukko[i][posx].sisaltaakoLaivan()){
                     return false;
                 }
@@ -138,7 +145,7 @@ public class Ruudukko {
         return true; //Jos vapaa paikka löytyy, palautetaan true.        
     }
     /**
-     * Palauttaa viitteen ruudukosta kaksiulotteisena boolean-taulukkona. taulukon alkio on true, jos kyseisessä paikassa on laiva.
+     * Palauttaa viitteen ruudukosta kaksiulotteisena boolean-taulukkona. Taulukon alkio on true, jos kyseisessä paikassa on laiva.
      * @return kaksiulotteinen boolean-taulukko.
      */
     public boolean[][] haeRuudukkoBooleantaulukkona(){

@@ -3,8 +3,10 @@
  * and open the template in the editor.
  */
 package sovelluslogiikka;
+import Mallit.Pelaaja;
 import Tiedostonkasittely.Pisteet;
 import UI.*;
+import java.util.ArrayList;
 /**
  *
  * @author Krisu
