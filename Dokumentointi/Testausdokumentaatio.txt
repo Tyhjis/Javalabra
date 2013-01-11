@@ -1,0 +1,6 @@
+Testauksen raportointi
+
+Tein laivanupotuspeliin testejä hyvin vähän, mikä ei mielestäni ollut läheskään riittävästi. Pelin kontrollerit, joita ei siis testattu ollenkaan, sisälsivät kuitenkin niin paljon metodeja, jotka käsittelivät graafista käyttöliittymää, jonka testauksia ei tarvittu tehdä. Kaikki testit menivät kuitenkin läpi ja ohjelma toimi moitteettomasti. Ohjelman pysäyttäviä bugeja en löytänyt. 
+Uuden pelin aloittamisesta en kuitenkaan ole varma. Kun peli loppuu ja pelaajan tiedot on tallennettu tiedostoon (tai jätetty tallentamatta, jos pelaaja on hävinnyt pelin), uusiPeli-metodi luo uuden PelinAloitus-olion. En ole aivan varma, mutta luulen, että peli saattaa jäätyä kun tarpeeksi monta peliä on pelattu.
+
+Kristian Hansson
