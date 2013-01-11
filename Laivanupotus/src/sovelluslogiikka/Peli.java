@@ -149,8 +149,7 @@ public class Peli {
         if(voittaminen()){
             double pisteet = laskePisteet();
             pelaaja.asetaPisteet(pisteet);
-            Pisteet tallennus = new Pisteet();
-            tallennus.kirjoitaTiedostolle(pelaaja);
+            pisteidenTallentaminen();
             taistelu.voitto(pelaaja.getNimi(), pisteet);
         }
         else{
@@ -167,6 +166,9 @@ public class Peli {
             if(luoko){
                 tallennus.kirjoitaTiedostolle(pelaaja);
             }
+        }
+        else if(tark == 0){
+            tallennus.kirjoitaTiedostolle(pelaaja);
         }
     }
     /**

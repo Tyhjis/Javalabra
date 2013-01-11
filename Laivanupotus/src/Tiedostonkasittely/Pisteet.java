@@ -21,8 +21,11 @@ public class Pisteet {
     ObjectInputStream oin;
     FileOutputStream fout;
     FileInputStream fin;
-    private final String tiedostonnimi;
+    private String tiedostonnimi;
     
+    /**
+     * Konstruktori. Asettaa tiedoston oletusnimen. Oletusnimenä "pojot".
+     */
     public Pisteet(){
         tiedostonnimi = "pojot";
     }
@@ -59,7 +62,7 @@ public class Pisteet {
     }
     /**
      * Hakee listan pelaajista tiedostosta.
-     * @return 
+     * @return Palauttaa 1, jos tiedostoja käsitteleviä virtaolioita ei löydy. 2 tai 3, jos tiedostoa ei voi lukea. Jos onnistuu, palauttaa 0.
      */
     public int haeListaTiedostosta(){
        if(oin == null || fin == null){
@@ -110,5 +113,21 @@ public class Pisteet {
     public ArrayList<Pelaaja> getLista(){
         haeListaTiedostosta();
         return lista;
+    }
+    /**
+     * Setteri tiedoston nimen asettamiseen.
+     * @param tNimi Haluttu nimi tiedostolle. Ei ole pakko käyttää.
+     */
+    public void setTiedostonninimi(String tNimi){
+        tiedostonnimi = tNimi;
+    }
+    
+    public boolean poistaTiedosto(){
+        f = new File(tiedostonnimi);
+        if(f.exists()){
+            f.delete();
+            return true;
+        }
+        return false;
     }
 }
