@@ -16,7 +16,7 @@ import java.util.ArrayList;
  */
 public class PelinAloitus {
     
-    private Aloitusikkuna start;
+    private Aloitusikkuna aloitus;
     private Kyselyikkuna kysely;
     private Pisteet pisteet;
     private Peli peli;
@@ -37,17 +37,8 @@ public class PelinAloitus {
     public ArrayList<Pelaaja> haeParhaatPelaajat(){
         pisteet = new Pisteet();
         int tarkistus = pisteet.lataaTiedosto();
-        if(tarkistus != 0 && tarkistus != 3){
-            if(pisteet.luoUusiTiedosto()){
-                if(start != null){
-                    start.esitaVirheilmoitusTiedostonLuontiOnnistui();
-                }
-            }
-            else{
-               if(start != null){
-                   start.esitaVirheilmoitusTiedostonLuontiEpaonnistui();
-               }
-            }
+        if(tarkistus != 0){
+            pisteet.luoUusiTiedosto();
         }
         ArrayList<Pelaaja> palautettava = pisteet.getLista();
         return palautettava;
@@ -61,15 +52,15 @@ public class PelinAloitus {
     }
     
     public void aloita(){
-        start = new Aloitusikkuna();
-        start.asetaOhjain(this);
+        aloitus = new Aloitusikkuna();
+        aloitus.asetaOhjain(this);
         ArrayList<Pelaaja> pelaajat = haeParhaatPelaajat();
         if(pelaajat != null){
-            String parhaat = "Parhaat pelaajat:\n"+luoMerkkijonoPelaajista(pelaajat);
-            start.asetaParhaatPelaajat(parhaat);
+            String parhaat = "Parhaat pelaajat:\n\n"+luoMerkkijonoPelaajista(pelaajat);
+            aloitus.asetaParhaatPelaajat(parhaat);
         }
         else{
-            start.asetaParhaatPelaajat("Parhaat pelaajat:");
+            aloitus.asetaParhaatPelaajat("Parhaat pelaajat:");
         }
     }
     /**
@@ -80,7 +71,7 @@ public class PelinAloitus {
         String palautettava = "";
         int i = 1;
         for(Pelaaja p: pelaajat){
-            palautettava = palautettava+i+". "+p.toString()+"\n";
+            palautettava = palautettava+i+". "+p.toString()+"\n\n";
             i++;
         }
         return palautettava;

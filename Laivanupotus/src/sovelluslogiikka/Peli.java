@@ -149,13 +149,24 @@ public class Peli {
         if(voittaminen()){
             double pisteet = laskePisteet();
             pelaaja.asetaPisteet(pisteet);
-            System.out.println(pelaaja.toString());
             Pisteet tallennus = new Pisteet();
             tallennus.kirjoitaTiedostolle(pelaaja);
             taistelu.voitto(pelaaja.getNimi(), pisteet);
         }
         else{
             taistelu.havio();
+        }
+    }
+    
+    public void pisteidenTallentaminen(){
+        Pisteet tallennus = new Pisteet();
+        int tark = tallennus.lataaTiedosto();
+        System.out.println(tark);
+        if(tark != 0){
+            boolean luoko = tallennus.luoUusiTiedosto();
+            if(luoko){
+                tallennus.kirjoitaTiedostolle(pelaaja);
+            }
         }
     }
     /**

@@ -96,7 +96,7 @@ public class Ruudukko {
         //Laivan asettaminen ruudukkoon. Posx ja posy -muuttujat kertovat laivan kokan halutun paikan. Horizontal taas onko laiva vaakatasossa vai ei.
         int pituus = laiva.getPituus();
         //Ensin tarkistetaan onko vapaata paikkaa tässä kohdassa laivalle.
-        if(tarkistaVoikoLaivanLisata(pituus, posx, posy, horizontal)){
+        if(tarkistaVoikoLaivanLisata(pituus, posx, posy, horizontal) && pituus != 0){
             if(horizontal){
                 for(int i = posx; i <= posx+pituus-1; i++){
                     ruudukko[posy][i].asetaLaiva(laiva);
@@ -151,10 +151,10 @@ public class Ruudukko {
     public boolean[][] haeRuudukkoBooleantaulukkona(){
         /*Palauttaa ruudukon boolean-taulukkona*/
         if(ruudukko != null){
-           int pit = getKoko();
-            boolean[][] pal = new boolean[pit][pit];
-            for(int i = 0; i < pit; i++){
-                for(int j = 0; j < pit; j++){
+           int pituus = getKoko();
+            boolean[][] pal = new boolean[pituus][pituus];
+            for(int i = 0; i < pituus; i++){
+                for(int j = 0; j < pituus; j++){
                     pal[i][j] = ruudukko[i][j].sisaltaakoLaivan();
                 }
             }

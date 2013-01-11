@@ -1,6 +1,7 @@
 
 package UI;
 
+import UI.Nappitoiminnot.PelinAloitusNappi;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,7 +15,7 @@ public class Aloitusikkuna extends JFrame{
     
     private JButton aloitapeli;
     private JPanel tausta;
-    private JTextField pelaajat;
+    private JTextArea pelaajat;
     private PelinAloitus ohjain;
     /**
      * Konstruktori. Kutsuu muodostaKayttoliittyma-metodia.
@@ -36,9 +37,10 @@ public class Aloitusikkuna extends JFrame{
         setTitle("Laivanupotus");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         tausta = new JPanel();
-        pelaajat = new JTextField();
+        pelaajat = new JTextArea();
+        pelaajat.setEditable(false);
         aloitapeli = new JButton("Aloita Peli");
-        aloitapeli.addActionListener(new PelinAloitusNappi());
+        aloitapeli.addActionListener(new PelinAloitusNappi(this));
         tausta.setLayout(new BoxLayout(tausta, BoxLayout.PAGE_AXIS));
         tausta.add(aloitapeli);
         tausta.add(pelaajat);
@@ -47,7 +49,7 @@ public class Aloitusikkuna extends JFrame{
         setVisible(true);
     }
     /**
-     * Tarkoitus Listata parhaat pelaajat.
+     * Tarkoitus listata parhaat pelaajat.
      * @param lista Parametrina annetaan ArrayList-olio, joka sisältää parhaat pelaajat.
      */
     public void asetaParhaatPelaajat(String lista){
@@ -65,28 +67,12 @@ public class Aloitusikkuna extends JFrame{
     public void esitaVirheilmoitusTiedostonLuontiEpaonnistui(){
         JOptionPane.showMessageDialog(null, "Tiedostoan parhaista pelaajista ei löytynyt. Uutta tiedostoa ei voitu luoda.", "Oho!", JOptionPane.ERROR_MESSAGE);
     }
-    /**
-     * Toiminnankuuntelija pelin aloittamiselle.
-     */
-    class PelinAloitusNappi implements ActionListener{
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            ohjain.luoKyselyikkuna();
-            dispose();
-        }
+    
+    public void aloitaPeli(){
+        ohjain.luoKyselyikkuna();
+        dispose();
     }
-    /**
-     * Tarkoitus hakea ArrayList-olio kontrollerilta.
-     */
-    class ParhaatPelaajatNappi implements ActionListener{
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            
-        }
-        
-    }
+    
 }
 
 

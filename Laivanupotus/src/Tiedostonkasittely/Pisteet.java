@@ -42,13 +42,12 @@ public class Pisteet {
     }
     /**
      * Lataa olemassaolevan tiedoston.
-     * @return Palauttaa 1, jos tiedostoa ei löytynyt. Palauttaa 2, jos lukeminen ei onnistunut ja 3, jos tiedosto on tyhjä.
+     * @return Palauttaa 1, jos tiedostoa ei löytynyt. Palauttaa 2, jos lukeminen ei onnistunut.
      */
     public int lataaTiedosto(){
         try{
             fin = new FileInputStream(tiedostonnimi);
             oin = new ObjectInputStream(fin);
-            lista = (ArrayList<Pelaaja>) oin.readObject();
         }
         catch(FileNotFoundException ex){
             return 1;
@@ -56,10 +55,28 @@ public class Pisteet {
         catch(IOException ex){
             return 2;
         }
-        catch(ClassNotFoundException ex){
-            return 3;
-        }
         return 0;
+    }
+    /**
+     * Hakee listan pelaajista tiedostosta.
+     * @return 
+     */
+    public int haeListaTiedostosta(){
+       if(oin == null || fin == null){
+           return 1;
+       }
+       else{
+           try{
+               lista = (ArrayList<Pelaaja>) oin.readObject();
+           }
+           catch(ClassNotFoundException ex){
+               return 2;
+           }
+           catch(IOException ex){
+               return 3;
+           }
+       }
+       return 0;
     }
     /**
      * Jo olemassaolevaan tiedostoon kirjoittaminen.
@@ -67,7 +84,7 @@ public class Pisteet {
      * @return Palauttaa true, jos kirjoittaminen onnistui.
      */
     public boolean kirjoitaTiedostolle(Pelaaja p){
-        lataaTiedosto();
+        haeListaTiedostosta();
         if(lista == null){
             lista = new ArrayList();
         }
@@ -91,7 +108,7 @@ public class Pisteet {
      * @return ArrayList<Pelaaja> Sisältää pelaajat, jotka ovat voittaneet pelin.
      */
     public ArrayList<Pelaaja> getLista(){
-        lataaTiedosto();
+        haeListaTiedostosta();
         return lista;
     }
 }
