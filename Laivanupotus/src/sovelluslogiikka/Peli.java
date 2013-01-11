@@ -156,11 +156,12 @@ public class Peli {
             taistelu.havio();
         }
     }
-    
+    /**
+     * Tallentaa pelaajan pisteet tiedostolle.
+     */
     public void pisteidenTallentaminen(){
         Pisteet tallennus = new Pisteet();
         int tark = tallennus.lataaTiedosto();
-        System.out.println(tark);
         if(tark != 0){
             boolean luoko = tallennus.luoUusiTiedosto();
             if(luoko){

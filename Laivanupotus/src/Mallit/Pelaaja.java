@@ -9,7 +9,7 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
 /**
- *
+ * Malli pelaajasta. Sisältää pelaajan nimen sekä pisteet. Käytettään parhaiden pelaajien tallennuksessa ja listauksessa.
  * @author Krisu
  */
 public class Pelaaja implements Serializable {
@@ -21,11 +21,16 @@ public class Pelaaja implements Serializable {
      * @param nimi String-olio. Haluttu nimi.
      */
     public Pelaaja(String nimi){
-        this.nimi = nimi;
+        if(nimi != null){
+            this.nimi = nimi;
+        }
+        else{
+            nimi = " ";
+        }
         pisteet = 0;
     }
     /**
-     * Nimen palautus
+     * Nimen palautus.
      * @return Palauttaa nimen.
      */
     public String getNimi(){
@@ -47,8 +52,8 @@ public class Pelaaja implements Serializable {
         return pisteet;
     }
     /**
-     * Palauttaa pelaajan tiedot muodossa: "nimi Pisteet: pisteet".
-     * @return String tiedot
+     * Palauttaa pelaajan tiedot muodossa: "'nimi'. Pisteet: pisteet".
+     * @return String Palauttaa olion tiedot.
      */
     @Override
     public String toString(){

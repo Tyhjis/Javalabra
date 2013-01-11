@@ -21,7 +21,7 @@ public class Ruudukko {
         }        
     }
     /**
-     * 
+     * Alustaa olion sisältämän kaksiulotteisen ruutu-olioista koostuvan taulukon halutun kokoiseksi.
      */
     private void alustaRuudukko(){        
         for(int i = 0; i < ruudukko.length; i++){
@@ -80,7 +80,12 @@ public class Ruudukko {
         }
         return null;
     }
-    
+    /**
+     * Tarkistaa, onko annetut parametrit ruudukon rajojen sisällä.
+     * @param posx Annettu x-koordinaatin sijainti.
+     * @param posy Annettu y-koordinaatin sijainti.
+     * @return 
+     */
     private boolean tarkistaKoordinaatit(int posx, int posy){
         return posx >= 0 && posx < getKoko() && posy >= 0 && posy < getKoko();
     }

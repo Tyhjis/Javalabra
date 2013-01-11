@@ -15,12 +15,12 @@ import java.util.Collections;
  */
 public class Pisteet {
     
-    File f;
+    File tiedosto;
     ArrayList<Pelaaja> lista;
-    ObjectOutputStream oout;
-    ObjectInputStream oin;
-    FileOutputStream fout;
-    FileInputStream fin;
+    ObjectOutputStream listanvieja;
+    ObjectInputStream listanhakija;
+    FileOutputStream tiedostonvieja;
+    FileInputStream tiedostonhakija;
     private String tiedostonnimi;
     
     /**
@@ -34,9 +34,9 @@ public class Pisteet {
      * @return Palauttaa true, jos tiedoston luominen onnistui.
      */
     public boolean luoUusiTiedosto(){
-        f = new File(tiedostonnimi);
+        tiedosto = new File(tiedostonnimi);
         try{
-            f.createNewFile();
+            tiedosto.createNewFile();
         }
         catch(IOException ex){
             return false;
@@ -49,8 +49,8 @@ public class Pisteet {
      */
     public int lataaTiedosto(){
         try{
-            fin = new FileInputStream(tiedostonnimi);
-            oin = new ObjectInputStream(fin);
+            tiedostonhakija = new FileInputStream(tiedostonnimi);
+            listanhakija = new ObjectInputStream(tiedostonhakija);
         }
         catch(FileNotFoundException ex){
             return 1;
@@ -65,18 +65,18 @@ public class Pisteet {
      * @return Palauttaa 1, jos tiedostoja käsitteleviä virtaolioita ei löydy. 2 tai 3, jos tiedostoa ei voi lukea. Jos onnistuu, palauttaa 0.
      */
     public int haeListaTiedostosta(){
-       if(oin == null || fin == null){
-           return 1;
+       if(listanhakija == null || tiedostonhakija == null){
+           lataaTiedosto();
        }
        else{
            try{
-               lista = (ArrayList<Pelaaja>) oin.readObject();
+               lista = (ArrayList<Pelaaja>) listanhakija.readObject();
            }
            catch(ClassNotFoundException ex){
-               return 2;
+               return 1;
            }
            catch(IOException ex){
-               return 3;
+               return 2;
            }
        }
        return 0;
@@ -97,9 +97,9 @@ public class Pisteet {
         }
         
         try{
-            fout = new FileOutputStream(tiedostonnimi);
-            oout = new ObjectOutputStream(fout);
-            oout.writeObject(lista);
+            tiedostonvieja = new FileOutputStream(tiedostonnimi);
+            listanvieja = new ObjectOutputStream(tiedostonvieja);
+            listanvieja.writeObject(lista);
         }
         catch(IOException ex){
             return false;
@@ -121,11 +121,14 @@ public class Pisteet {
     public void setTiedostonninimi(String tNimi){
         tiedostonnimi = tNimi;
     }
-    
+    /**
+     * Poistaa halutessa tiedoston.
+     * @return palauttaa true, jos tiedosto on löydetty ja poistettu.
+     */
     public boolean poistaTiedosto(){
-        f = new File(tiedostonnimi);
-        if(f.exists()){
-            f.delete();
+        tiedosto = new File(tiedostonnimi);
+        if(tiedosto.exists()){
+            tiedosto.delete();
             return true;
         }
         return false;

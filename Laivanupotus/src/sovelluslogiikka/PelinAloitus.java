@@ -11,7 +11,7 @@ import UI.Kyselyikkuna;
 import java.util.ArrayList;
 
 /**
- *
+ * Kontrolleri. Ohjaa toimintoja, jotka tehdään pelin alussa.
  * @author Krisu
  */
 public class PelinAloitus {
@@ -31,8 +31,8 @@ public class PelinAloitus {
         peli.luoVarvaysRuutu();
     }
     /**
-     * 
-     * @return 
+     * Hakee ja palauttaa parhaimmat pelaajat tiedostosta.
+     * @return Palauttaa ArrayList<Pelaaja> -luokan.
      */
     public ArrayList<Pelaaja> haeParhaatPelaajat(){
         pisteet = new Pisteet();
@@ -44,13 +44,15 @@ public class PelinAloitus {
         return palautettava;
     }
     /**
-     * 
+     * Luo kyselyikkunan. Tapahtuma ennen varsinaisen pelaamisen aloittamista.
      */
     public void luoKyselyikkuna() {
         kysely = new Kyselyikkuna();
         kysely.asetaOhjain(this);
     }
-    
+    /**
+     * Luo aloitusikkunan. Ensimmäinen asia ohjelman käynnistyessä.
+     */
     public void aloita(){
         aloitus = new Aloitusikkuna();
         aloitus.asetaOhjain(this);

@@ -123,7 +123,9 @@ public class Varvaysikkuna extends JFrame{
             asetettavalaiva = 0;
         }
     }
-    
+    /**
+     * Tarkistusmetodi. Jos viimeinen laiva on poistettu pinosta, aloitetaan peli.
+     */
     public void tarkistaVoikoPelinAloittaa(){
         if(asetettavalaiva == 0){
                 ohjain.aloitaPeli();

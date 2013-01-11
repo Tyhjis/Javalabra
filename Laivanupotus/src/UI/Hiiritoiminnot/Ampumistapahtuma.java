@@ -4,7 +4,10 @@ package UI.Hiiritoiminnot;
 import UI.Taisteluikkuna;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-
+/**
+ * Hiirenkuuntelija. Sisällytetään jokaiseen tekoälyn ruutuun Taisteluikkuna-luokassa. Sisältää ruutunsa koordinaatit.
+ * @author Krisu
+ */
 public class Ampumistapahtuma implements MouseListener {
 
     private int posx, posy;

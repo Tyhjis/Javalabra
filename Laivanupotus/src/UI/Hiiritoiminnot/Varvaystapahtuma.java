@@ -5,7 +5,10 @@ import UI.Varvaysikkuna;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import sovelluslogiikka.Peli;
-
+/**
+ * Hiirenkuuntelija. Sisällytetään jokaiseen Varvaysikkunan JLabel-ruutuun. Sisältää kyseisen ruudun koordinaatit.
+ * @author Krisu
+ */
 public class Varvaystapahtuma implements MouseListener {
 
     private final int posx;

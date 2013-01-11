@@ -8,7 +8,7 @@ import Tiedostonkasittely.Pisteet;
 import UI.*;
 import java.util.ArrayList;
 /**
- *
+ * Ohjelman aloittava luokka.
  * @author Krisu
  */
 public class Logiikka {

@@ -29,6 +29,11 @@ public class PisteetTest {
         pisteet.setTiedostonninimi("testTied");
     }
     
+    @After
+    public void tiedostonPoisto(){
+        pisteet.poistaTiedosto();
+    }
+    
     @Test
     public void testaaTiedostonOlemattomuus(){
         int testaus = pisteet.lataaTiedosto();
@@ -63,19 +68,23 @@ public class PisteetTest {
     @Test
     public void testaaListanHakuTiedostosta1(){
         pisteet.luoUusiTiedosto();
-        lisaaPelaajiaTiedostoon();
+        pisteet.kirjoitaTiedostolle(new Pelaaja("pelaaja"));
         assertTrue(pisteet.haeListaTiedostosta() == 0);
     }
     
-    public void lisaaPelaajiaTiedostoon(){
-        Pelaaja pelaaja1 = new Pelaaja("pelaaja1");
-        Pelaaja pelaaja2 = new Pelaaja("pelaaja2");
-        pisteet.kirjoitaTiedostolle(pelaaja1);
-        pisteet.kirjoitaTiedostolle(pelaaja2);
+    @Test
+    public void testaaListanHakuTiedostosta2(){
+        pisteet.luoUusiTiedosto();
+        assertTrue(pisteet.getLista() == null);
     }
     
-    @After
-    public void tiedostonPoisto(){
-        pisteet.poistaTiedosto();
+    @Test
+    public void testaaListanHakuTiedostosta3(){
+        pisteet.luoUusiTiedosto();
+        pisteet.kirjoitaTiedostolle(new Pelaaja("pelaaja"));
+        assertTrue(pisteet.getLista() != null);
     }
+    
+    
+    
 }

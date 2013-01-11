@@ -5,7 +5,7 @@
 package Mallit;
 
 /**
- *
+ * Ruutu-luokka. Sisältää arvoinaan koordinaatit, jossa kyseinen olio sijaitsee. Kertoo myös onko ruutuun ammuttu ja sisältääkö laivan.
  * @author Krisu
  */
 public class Ruutu {

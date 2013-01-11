@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import sovelluslogiikka.PelinAloitus;
 /**
- * 
+ * Laivanupotuspelin ensimmäinen käyttöliittymäikkuna. Aukeaa kun peli aloitetaan.
  * @author Krisu
  */
 public class Aloitusikkuna extends JFrame{
@@ -31,7 +31,7 @@ public class Aloitusikkuna extends JFrame{
         this.ohjain = ohjain;
     }
     /**
-     * 
+     * Luo ja asettaa käyttöliittymän oliot.
      */
     public void muodostaKayttoliittyma(){
         setTitle("Laivanupotus");
@@ -67,7 +67,9 @@ public class Aloitusikkuna extends JFrame{
     public void esitaVirheilmoitusTiedostonLuontiEpaonnistui(){
         JOptionPane.showMessageDialog(null, "Tiedostoan parhaista pelaajista ei löytynyt. Uutta tiedostoa ei voitu luoda.", "Oho!", JOptionPane.ERROR_MESSAGE);
     }
-    
+    /**
+     * Kutsuu kontrolleria aloittamaan pelin tietojenkyselyvaiheen.
+     */
     public void aloitaPeli(){
         ohjain.luoKyselyikkuna();
         dispose();

@@ -1,6 +1,9 @@
 
 package Mallit;
-
+/**
+ * Malli laivanupotuspelin laivasta. Sisältää viitteen ruudukkoon, johon laiva on sijoitettu.
+ * @author Krisu
+ */
 public class Laiva {
     
     private int pituus;

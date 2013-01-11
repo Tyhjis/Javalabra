@@ -34,7 +34,10 @@ public class AI {
         posy = new Random();
         hor = new Random();
     }
-    
+    /**
+     * Luo pinon, joka sisältää laivojen koot. Tekoäly käyttää pinoa laivojen lisäämiseen.
+     * @param koot Kokonaislukutaulukko. Viite laivojen pinoihin.
+     */
     private void luoLaivojenPino(int[] koot){
         laivojenkoot = new Stack();
         for(int i = 0; i < koot.length; i++){
@@ -63,8 +66,8 @@ public class AI {
         
     }
     /**
-     * 
-     * @return 
+     * Palauttaa ja poistaa pinosta seuraavan asetettavan laivan.
+     * @return Kokonaisluku. Laivojen kokojen pinosta päällimmäinen.
      */
     public int haeAsetettavaLaiva(){
         int asetettavalaiva = 0;

@@ -6,7 +6,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 import sovelluslogiikka.PelinAloitus;
-
+/**
+ * Laivanupotuspelin käyttöliittymäikkuna tietojen kyselemiseen. Sisältää komponentit 
+ * @author Krisu
+ */
 public class Kyselyikkuna extends JFrame {
 
     private PelinAloitus ohjain;
@@ -87,7 +90,9 @@ public class Kyselyikkuna extends JFrame {
             setContentPane(pohja);
         }
     }
-    
+    /**
+     * Kyselee käyttäjältä syötteet ruudukon kokoa ja laivojen määrää varten.
+     */
     public void alustaKokoJaMaara(){
         while(!tarkistaSyote(ruudukonkokostr, true)){
             ruudukonkokostr = JOptionPane.showInputDialog("Syota haluamasi ruudukon koko valilta 10-20.");
@@ -98,7 +103,9 @@ public class Kyselyikkuna extends JFrame {
         ruudukonkoko = Integer.parseInt(ruudukonkokostr);
         laivojenmaara = Integer.parseInt(laivojenmaarastr);
     }
-    
+    /**
+     * 
+     */
     public void alustaLaivojenKoot(){
         Integer n;
         String s;
@@ -110,7 +117,7 @@ public class Kyselyikkuna extends JFrame {
         }
     }
     /**
-     * Syötteen tarkistus.
+     * Tarkistaa käyttäjän antamat syötteet.
      * @param s annettu syöte
      * @param ruudukko true, jos tarkistetaan ruudukkoa koskevat syötteet.
      * @return palauttaa true, jos syöte oli oikea. Muuten false.
@@ -127,12 +134,12 @@ public class Kyselyikkuna extends JFrame {
             return false;
         }
         if(ruudukko){
-            if(n.intValue() > 9 && n.intValue() < 21){
+            if(n.intValue() >= 10 && n.intValue() <= 20){
                 return true;
             }
         }
         else{
-            if(n.intValue() > -1 && n.intValue() < 11){
+            if(n.intValue() >= 0 && n.intValue() <= 10){
                 return true;
             }
         }

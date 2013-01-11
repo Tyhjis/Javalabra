@@ -8,14 +8,15 @@ import java.awt.GridLayout;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import sovelluslogiikka.Peli;
-
+/**
+ * Laivanupotuspelin taisteluikkuna. Kuvastaa pelaamisen tapahtumia.
+ * @author Krisu
+ */
 public class Taisteluikkuna extends JFrame {
     
     private JPanel ruudukko1, ruudukko2, tausta, laivojenmaarat, vuorontausta;
     private JLabel[][] ruudut1, ruudut2;
     private JLabel laivoja1, laivoja2, vuorot;
-    private JMenuBar menut;
-    private JMenu menu1;
     private Peli ohjain;
     private final int ruudukonkoko;
     private int laivojenmaara1, laivojenmaara2;
@@ -41,7 +42,9 @@ public class Taisteluikkuna extends JFrame {
     public void asetaOhjain(Peli ohjain){
         this.ohjain = ohjain;
     }
-    
+    /**
+     * Luo käyttöliittymän oliot ja asettaa ne ikkunaan.
+     */
     private void muodostaKayttoliittyma(){
         setTitle("Laivanupotus");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -60,7 +63,9 @@ public class Taisteluikkuna extends JFrame {
         setSize(1000, 1000);
         setVisible(true);
     }
-    
+    /**
+     * Apumetodi käyttöliittymän muodostamiseen. Luo käyttöliittymän komponentit.
+     */
     private void luoOliot(){
         tausta = new JPanel();
         laivojenmaarat = new JPanel();
@@ -89,7 +94,9 @@ public class Taisteluikkuna extends JFrame {
         laivojenmaarat.add(laivoja2);
         vuorontausta.add(vuorot);
     }
-    
+    /**
+     * Apumetodi käyttöliittymän muodostamiseen. Luo ruudukon, joka kuvastaa pelaajan omistamaa koordinaatistoa.
+     */
     private void luoPelaajanRuudukko(){
         for(int i = 0; i < ruudukonkoko; i++){
             for(int j = 0; j < ruudukonkoko; j++){
@@ -103,7 +110,9 @@ public class Taisteluikkuna extends JFrame {
             }
         }
     }
-    
+    /**
+     * Apumetodi käyttöliittymän muodostamiseen. Luo ruudukon, joka kuvastaa tekoälyn omistamaa koordinaatistoa.
+     */
     private void luoTekoalynRuudukko(){
         for(int i = 0; i < ruudukonkoko; i++){
             for(int j = 0; j < ruudukonkoko; j++){

@@ -74,3 +74,19 @@ Koodikatselmoinnin saattaminen loppuun. (Nimim. Cobrellon koodi).
 6.-7.1.2013
 Käytetty aika: 8 tuntia.
 Tiedostonkäsittelyn suunnittelua ja toteutusta. Javadocin kirjoittamista. Kahden sekvenssikaavion piirtäminen. Luokkakaavion päivitys.
+
+8.1.2013
+Käytetty aika: 4 tuntia.
+Javadocin päivittämistä. Tiedostonkäsittelyn tekemistä.
+
+9.1.2013
+Käytetty aika: 4 tuntia.
+Koodikatselmoinnin (nro 2) tekemistä. Luokkakaavion päivittämistä.
+
+10.1.2013
+Käytetty aika: 4 tuntia.
+Tiedostonkäsittelyn säätöä. Käytännön testaamista.
+
+11.1.2013
+Käytetty aika: 6 tuntia.
+Muutaman testin tekemistä tiedostonkäsittelyyn ja Ruudukkoon. Sekvenssikaavioiden piirtämistä.

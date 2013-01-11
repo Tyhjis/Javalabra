@@ -15,8 +15,8 @@ public class PisteidenVertailija implements Comparator{
 
     /**
      * Pelaajien järjestäminen.
-     * @param o1 
-     * @param o2
+     * @param o1 Ensimmäinen objektiparametri.
+     * @param o2 Toinen objektiparametri.
      * @return palauttaa -1, jos ensimmäisen parametrin pistemäärä on suurempi kuin toisen. 0 jos pistemäärä on sama. 1 jos pistemäärä on pienempi.
      */
     @Override

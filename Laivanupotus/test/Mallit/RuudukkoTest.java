@@ -41,17 +41,30 @@ public class RuudukkoTest {
     }
     
     @Test
-    public void tarkistaLaivanAsetus(){
+    public void tarkistaLaivanAsetus1(){
         Laiva laiva = new Laiva(3);
         assertTrue(ruudukko.lisaaLaiva(laiva, 3, 2, true));
-        assertTrue(!ruudukko.lisaaLaiva(laiva, 3, 2, false));
+    }
+    
+    @Test
+    public void tarkistaLaivanAsetus2(){
+        Laiva laiva1 = new Laiva(3);
+        Laiva laiva2 = new Laiva(2);
+        ruudukko.lisaaLaiva(laiva1, 3, 2, false);
+        assertTrue(!ruudukko.lisaaLaiva(laiva2, 2, 2, true));
+    }
+    
+    @Test
+    public void tarkistaLaivanAsetus3(){
+        Laiva laiva = new Laiva(3);
+        ruudukko.lisaaLaiva(laiva, 1, 1, true);
+        assertTrue(ruudukko.getLaivojenMaara() == 1);
     }
     
     @Test
     public void testaaTuhoutuukoLaiva(){
         Laiva laiva = new Laiva(3);
         ruudukko.lisaaLaiva(laiva, 3, 2, true);
-        assertTrue(ruudukko.getLaivojenMaara() == 1);
         for(int i = 3; i <= 3+3-1; i++){
             ruudukko.ammuRuutuun(i, 2);
         }
